@@ -1,0 +1,1 @@
+2026-11-04T05:44:49.725Z,68.4,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED

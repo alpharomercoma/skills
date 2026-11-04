@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "failed": [],
+  "checked": 29,
+  "notChecked": [
+    "resources panel, Jupyter server and sidecar, which need a live session: run start first",
+    "official kaggle CLI, used by quota",
+    "save, delete, rename and add-input, which change things"
+  ]
+}

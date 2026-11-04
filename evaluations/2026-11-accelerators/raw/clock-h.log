@@ -1,0 +1,4 @@
+06:40:06 kn-eval-clock-h-close-at-15 0.00 T: job started {"started":true,"name":"long","pid":140,"log":"/kaggle/working/long.log"}
+06:55:06 kn-eval-clock-h-close-at-15 15.00 tab closed 
+06:55:10 kn-eval-clock-h-close-at-15 15.06 status running
+07:20:39 kn-eval-clock-h-close-at-15 40.55 status cancelled

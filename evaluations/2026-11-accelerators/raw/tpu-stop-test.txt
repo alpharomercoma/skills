@@ -1,0 +1,6 @@
+08:19:25 accel {"changed":true,"accelerator":"TPU v5e-8","hoursRemaining":20,"session":"off"}
+08:19:38 start returned 124 Session did not come up in time. Pill: "Draft Session Starting …". Dialogs: []
+08:19:51 raw rows "kn-eval-tpu-stop\nInteractive Session with TPU v5e-8\nQueued\n\njust now\n\nmore_horiz"
+08:19:59 sessions [ { "title": "kn-eval-tpu-stop", "type": "interactive", "accelerator": "TPU v5e-8", "status": "queued", "running": null } ]
+08:20:09 sessions-stop exit=0 { "stopped": "kn-eval-tpu-stop" }
+08:20:14 raw rows after "kn-eval-tpu-stop\nInteractive Session with TPU v5e-8\nCancelled\n\na minute\n\nmore_horiz"

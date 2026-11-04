@@ -1,0 +1,25 @@
+run started
+
+===== cell 0  exec=4  ERROR  # A4: fill GPU 0 until PyTorch raises its out-of-memory error. The exception is not caught.
+KERNEL_PID 50
+
+ERROR OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 36.81 MiB is free. Including non-PyTorch memory, this process has 14.52 GiB memory in use. Of the allocated memory 14.28 GiB is allocated by PyTorch, and 37.62 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+===== cell 1  exec=·  print("SENTINEL_SHOULD_NOT_RUN", flush=True)
+
+===== cell 2  exec=·  # Recovery, run on its own afterwards.
+{
+  "done": true,
+  "errored": true,
+  "interrupted": false,
+  "errorCells": [
+    0
+  ],
+  "notRunCells": [
+    1,
+    2
+  ],
+  "indeterminate": false,
+  "sessionLost": false,
+  "timedOut": false
+}

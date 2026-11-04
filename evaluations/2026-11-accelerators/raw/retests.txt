@@ -1,0 +1,30 @@
+06:04:56 start returned; immediate sh exit=0 ready
+06:05:05 monitor start exit=0 { "started": true, "name": "kn-monitor", "pid": 178, "log": "/kaggle/working/kn-monitor.log" }
+06:05:11 monitor start again, expect exit 1 exit=1 { "error": "The monitor is already running. Read it with: monitor report. Restart it with: monitor stop, then monitor start.", "name": "kn-monitor", "exists": true, "running": true, "pid": 178, "exitCode": null, "lostWit
+06:05:17 monitor stop exit=0 { "stopped": true, "name": "kn-monitor" }
+06:05:23 job start, parent and child ignore SIGTERM exit=0 { "started": true, "name": "stubborn", "pid": 243, "log": "/kaggle/working/stubborn.log" }
+06:05:32 before stop exit=0 4
+06:05:43 job stop exit=0 { "stopped": true, "name": "stubborn" }
+job stop took 10.4 s
+06:05:48 after stop, expect 0 exit=0 0
+06:05:54 job status after stop exit=0 { "name": "stubborn", "exists": true, "running": false, "pid": 243, "exitCode": null, "lostWithoutExitCode": true, "elapsedSeconds": 31, "log": "/kaggle/working/stubborn.log", "logBytes": 0, "logTail": "" }
+06:06:01 job stop a job that does not exist, expect failure exit=0 { "stopped": false, "name": "nosuchjob", "exists": false }
+06:06:07 sh timeout path: exit code passes through exit=7 
+06:06:11 resources, one reading exit=0 { "session": "running", "capturedAt": "2026-11-04T06:06:11.869Z", "accelerator": "No Accelerator", "uptime": "1m", "sessionLimit": "12 hours", "cpuPercent": 0, "ram": { "usedMiB": 588.5, "maxMiB": 30720 }, "disk": { "use
+sixth CPU session: exit 1 in 6 s
+06:16:36
+== job start, ignores SIGTERM
+{ "started": true, "name": "stubborn2", "pid": 1454, "log": "/kaggle/working/stubborn2.log" } 
+== job stop
+{ "stopped": true, "name": "stubborn2", "exitCode": 137 }  [exit 0]
+== status
+{ "name": "stubborn2", "exists": true, "running": false, "pid": 1454, "exitCode": 137, "lostWithoutExitCode": false, "elapsedSeconds": 17, "log": "/kaggle/working/stubbor
+
+== left over
+0 
+== stop missing
+ERROR: No job named "nosuchjob". See: job list
+[exit 1]
+== stop finished
+{ "stopped": false, "name": "stubborn2", "exists": true, "running": false, "pid": 1454, "exitCode": 137, "lost
+ [exit 0]

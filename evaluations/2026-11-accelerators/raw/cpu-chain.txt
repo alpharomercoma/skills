@@ -1,0 +1,22 @@
+04:33:39 accelerator {"changed":false,"accelerator":"None"}
+04:33:58 start {"started":true,"seconds":19,"kernel":{"name":"Python 3","status":"idle","connected":true}}
+04:34:00 sampler 98
+04:34:32 M4-M6 run started
+04:41:47 M4-M6 finished, reads 45 failed 0
+04:41:47 cell output tail tmp_start 1793767199.284 | MARK disk_tmp_written 1793767240.142 | MARK disk_tmp_end 1793767285.391 | MARK done 1793767305.393 | 
+04:42:30 A6 fill started
+04:44:15 A6 wait {"done":true,"errored":true,"timedOut":false,"errors":[0],"notRun":[1]}
+04:44:15 A6 output before usage(total=20957446144, used=225280, free=20940443648) | GiB 1 6 | GiB 2 11 | GiB 3 16 | GiB 4 21 | GiB 5 26 | GiB 6 31 | GiB 7 37 | GiB 8 42 | GiB 9 47 | GiB 10 52 | GiB 11 58 | GiB 12 63 | GiB 13 68 | GiB 14 73 | GiB 15 77 | GiB 16 82 | GiB 17 87 | GiB 18 92 | GiB 19 97 |  | ERROR OSError: [Errno 28] No space left on device | 
+04:44:22 A6 panel [{"label":"Disk","value":"2GiB","limit":"57.6GiB"}]
+04:44:23 A6 df + file /dev/loop2       20G   20G  336K 100% /kaggle/working | 20940062720 | /dev/loop2       20G  252K   20G   1% /kaggle/working | 
+04:44:24 A5 kernel pid before 50
+04:44:59 A5 started
+04:45:01 A5 state +2s busy/true/busy=true/pending=0,1 pill=(11m) HDD CPU RAM
+04:45:31 A5 state +32s connecting/true/busy=false/pending= pill=(11m) HDD CPU RAM
+04:45:37 A5 state +38s idle/true/busy=false/pending= pill=(11m) HDD CPU RAM
+04:45:44 A5 wait returned after 46 s {"done":true,"errored":false,"timedOut":false,"errors":[],"notRun":[0,1],"kernel":"idle"}
+04:45:44 A5 output tail 26.0 | allocated_gib 26.25 | allocated_gib 26.5 | allocated_gib 26.75 | allocated_gib 27.0 | allocated_gib 27.25 | allocated_gib 27.5 | allocated_gib 27.75 | allocated_gib 28.0 | allocated_gib 28.25 | allocated_gib 28.5 | allocated_gib 28.75 | allocated_gib 29.0 | allocated_gib 29.25 |  | 
+04:45:44 A5 dialogs []
+04:45:44 A5 pill Draft Session (11m) HDD CPU RAM
+04:45:45 A5 kernel pid after 825 different
+04:45:45 A5 status {"name":"Python 3","status":"idle","connected":true}

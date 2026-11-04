@@ -1,0 +1,47 @@
+=== A2/C05 DataParallel 04:10:26
+panel ['0.00%', '5.3GiB', '0.00%', '3.3GiB']
+panel ['0.00%', '5.3GiB', '0.00%', '3.3GiB']
+panel ['0.00%', '5.3GiB', '0.00%', '3.3GiB']
+panel ['0.00%', '5.3GiB', '0.00%', '3.3GiB']
+wait exit=1
+REL_L2 1.4503822853839665e-07
+LOSS 0.4290340542793274 0.4290340542793274
+TIME_10_STEPS single 0.041 dp 1.104
+REPLICA_BATCHES {'cuda:0': 1024, 'cuda:1': 1024}
+DEVICES 2 ['Tesla T4', 'Tesla T4']
+  "done": true,
+  "errored": true,
+=== truth for unequal hold
+peak mem last 90 s 5403.0 3353.0 peak util 32.0 8.0
+=== A4 GPU OOM 04:12:18
+run exit=1 in 13s
+===== cell 0  exec=4  ERROR  # A4: fill GPU 0 until PyTorch raises its out-of-memory error. The exception is not caught.
+KERNEL_PID 50
+ERROR OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 36.81 MiB is free. Including non-PyTorch memory, this process has 14.52 GiB m
+===== cell 1  exec=·  print("SENTINEL_SHOULD_NOT_RUN", flush=True)
+  "errored": true,
+  "errorCells": [
+  "notRunCells": [
+"notRunCells":[1,2],panel after oom ['0.00%', '14.5GiB', '0.00%', '3.3GiB']
+recovery exit=0 in 10s
+RECOVERY 50 16.0
+  "errored": false,
+panel after recovery ['0.00%', '1.3GiB', '0.00%', '3.3GiB']
+--- 04:13:04
+=== C03 selection vs hardware 04:13:24
+ 2 Tesla T4; torch cuda 2 
+--- same selection while live (must not restart)
+1381
+kernel pid before=50 after=50
+--- different selection without --force (must refuse)
+ERROR: A session is live, and switching accelerator would end it along with anything running in it, including detached jobs. Run s
+heartbeat alive
+=== A7 second T4 at once 04:14:01
+second T4 start exit=124 in 64s: ERROR:Sessiondidnotcomeupintime.Pill:"DraftSessionoff(runacelltostart)".Dialogs:["GPUSessioncapreachedMaximuminteractiveGPUsessioncountof1reached.StoponeofyourotherGPUnotebooksessionstocontinueediting.CancelManageactives
+pill: Draft Session off (run a cell to start)
+dialogs: ["GPU Session cap reached Maximum interactive GPU session count of 1 reached. Stop one of your other GPU notebook sessions to continue editing. Cancel Manage active sessions"]
+alerts: ["An error occurred starting the worker."]
+matching text: ["Draft Session","Session is starting...","An error occurred starting the worker.","Maximum interactive GPU session count of 1 reached.","Error: Maximum interactive GPU session count of 1 reached.","GPU Session cap reached","Maximum interactive GPU session count of 1 reached. Stop one of your other GPU notebook sessions to continue editing.","Manage active sessions"]
+quota at second-session start: 2026-11-04T04:15:23Z,0.28h,0.00h
+ERROR: No live session. Run: start 
+--- 04:15:31

@@ -1,0 +1,27 @@
+2026-11-04T05:48:30.859Z ledger gpu2-start ["GPU 1.34h","TPU 0.00h"]
+2026-11-04T05:48:41.257Z accel {"changed":false,"accelerator":"GPU T4 x2"}
+2026-11-04T05:49:02.852Z A1 start 1 22 s idle
+2026-11-04T05:49:05.835Z A1 hardware 1 2 Tesla T4 exit 0
+2026-11-04T05:49:08.516Z A1 stop 1 {"stopped":true}
+2026-11-04T05:49:32.692Z A1 start 2 19 s idle
+2026-11-04T05:49:35.695Z A1 hardware 2 2 Tesla T4 exit 0
+2026-11-04T05:49:36.808Z A1 stop 2 {"stopped":true}
+2026-11-04T05:50:05.587Z A1 start 3 24 s idle
+2026-11-04T05:50:10.122Z A1 hardware 3 2 Tesla T4 exit 0
+2026-11-04T05:50:10.851Z A1 stop 3 {"stopped":true}
+2026-11-04T05:50:16.474Z ledger after-a1 ["GPU 1.36h","TPU 0.00h"]
+2026-11-04T05:50:44.651Z monitor {"started":true,"name":"kn-monitor","pid":163,"log":"/kaggle/working/kn-monitor.log"}
+2026-11-04T05:51:44.516Z C05b panel reads 14 latency ms 642 1159 1178 1175 1196 1103 1089 1316 1246 1151 1078 1446 1118 1048
+2026-11-04T05:51:44.517Z C05b panel gpu mem 9318.4/3174.4 9318.4/3174.4 9318.4/3174.4 9318.4/3174.4 9318.4/3174.4
+2026-11-04T05:51:47.494Z C05b truth now 0, 9339;1, 3195;
+2026-11-04T05:51:50.514Z C05b wait {"done":true,"errored":true,"kernelRestarted":false}
+2026-11-04T05:51:50.521Z C05b output ERROR OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 GiB. GPU 1 has a total capacity of 14.56 GiB of which 11.44 GiB is free.
+2026-11-04T05:51:58.707Z Cap retest 4 s ERROR code=1 GPU Session cap reached Maximum interactive GPU session count of 1 reached. Stop one of your other GPU notebook sessions to continue editing. Find them with: sessions
+2026-11-04T05:52:04.442Z S6 start {"started":true,"name":"s6","pid":317,"log":"/kaggle/working/s6.log"}
+2026-11-04T05:52:05.716Z ledger s6-start ["GPU 1.39h","TPU 0.00h"]
+2026-11-04T06:14:38.632Z S6 status {"name":"s6","exists":true,"running":false,"pid":317,"exitCode":0,"lostWithoutExitCode":false,"elapsedSeconds":1354,"log":"/kaggle/working/s6.log","logBytes":1221,"logTail":"beat 1310\nS6_FINISHED\n"}
+2026-11-04T06:14:38.636Z S6 pill Draft Session (24m) HDD CPU RAM GPU GPU dialogs []
+2026-11-04T06:14:41.285Z monitor report {"samples":719,"seconds":1436,"lastSampleAgeSeconds":0.5,"gpus":[{"index":0,"peakMemMiB":9339,"lastMemMiB":9339,"totalMemMiB":15360,"meanUtil":0.1,"peakUtil":39,"activePercent":0.1},{"index":1,"peakMemMiB":3195,"lastMemMiB":3195,"totalMemMiB":15360,"meanUtil":0,"peakUtil":12,"activePercent":0.1}],"cpu":{"meanPercentOfAllCores":1.5,"peakPercentOfAllCores":50,"cores":4},"ram":{"peakMiB":2093,"lastMiB":2018,"totalMiB":30720},"diskWorking":{"lastMiB":0,"totalMiB":19987},"oomKills":0,"warnings":["GPU use has stopped: none in the last minute."]}
+2026-11-04T06:14:41.904Z ledger s6-end ["GPU 1.76h","TPU 0.00h"]
+2026-11-04T06:14:42.593Z stop {"stopped":true}
+2026-11-04T06:14:43.261Z ledger stopped ["GPU 1.76h","TPU 0.00h"]

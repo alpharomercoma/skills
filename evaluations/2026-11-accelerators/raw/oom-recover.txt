@@ -1,0 +1,14 @@
+cell 2 started
+
+===== cell 2  exec=5  # Recovery, run on its own afterwards.
+RECOVERY 50 16.0
+
+{
+  "done": true,
+  "errored": false,
+  "interrupted": false,
+  "errorCells": [],
+  "indeterminate": false,
+  "sessionLost": false,
+  "timedOut": false
+}

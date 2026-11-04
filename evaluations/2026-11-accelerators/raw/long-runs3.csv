@@ -1,0 +1,28 @@
+2026-11-04T06:12:31.101Z,kn-eval-l6-job-tab-open,job,{"started":true;"name":"long";"pid":140;"log":"/kaggle/working/long.log"}
+2026-11-04T06:13:17.741Z,kn-eval-l7-job-reopened-polled,job,{"started":true;"name":"long";"pid":132;"log":"/kaggle/working/long.log"}
+2026-11-04T06:14:02.790Z,kn-eval-l7-job-reopened-polled,tab closed,0.8 min
+2026-11-04T06:14:02.799Z,kn-eval-l6-job-tab-open,state at 1.5 min,running|
+2026-11-04T06:23:33.035Z,kn-eval-l7-job-reopened-polled,state at 10.3 min,no tab
+2026-11-04T06:23:44.136Z,kn-eval-l7-job-reopened-polled,reopened by job status at 10.4 min,
+2026-11-04T06:23:44.136Z,kn-eval-l7-job-reopened-polled,poll at 10.4 min,exit=0 "logTail": "beat 480\nbeat 510\nbeat 540\nbeat 570\nbeat 600\n"
+2026-11-04T06:24:14.148Z,kn-eval-l7-job-reopened-polled,state at 10.9 min,running|
+2026-11-04T06:28:49.394Z,kn-eval-l7-job-reopened-polled,poll at 15.5 min,exit=0 "logTail": "beat 810\nbeat 840\nbeat 870\nbeat 900\nbeat 930\n"
+2026-11-04T06:34:00.054Z,kn-eval-l7-job-reopened-polled,poll at 20.7 min,exit=0 "logTail": "beat 1110\nbeat 1140\nbeat 1170\nbeat 1200\nbeat 1230\n"
+2026-11-04T06:39:04.171Z,kn-eval-l7-job-reopened-polled,poll at 25.8 min,exit=0 "logTail": "beat 1410\nbeat 1440\nbeat 1470\nbeat 1500\nbeat 1530\n"
+2026-11-04T06:44:09.161Z,kn-eval-l7-job-reopened-polled,poll at 30.9 min,exit=0 "logTail": "beat 1710\nbeat 1740\nbeat 1770\nbeat 1800\nbeat 1830\n"
+2026-11-04T06:49:15.395Z,kn-eval-l7-job-reopened-polled,poll at 36.0 min,exit=0 "logTail": "beat 2010\nbeat 2040\nbeat 2070\nbeat 2100\nbeat 2130\n"
+2026-11-04T06:50:45.416Z,kn-eval-l6-job-tab-open,state at 38.2 min,running|Are you still there? You haven't made changes within your interactive session in over 40 minutes. Would you li
+2026-11-04T06:52:45.461Z,kn-eval-l6-job-tab-open,state at 40.2 min,off|Are you still there? You haven't made changes within your interactive session in over 40 minutes. Would you li
+2026-11-04T06:54:20.405Z,kn-eval-l7-job-reopened-polled,poll at 41.0 min,exit=0 "logTail": "beat 2340\nbeat 2370\nbeat 2400\nbeat 2430\nbeat 2460\n"
+2026-11-04T06:59:25.816Z,kn-eval-l7-job-reopened-polled,poll at 46.1 min,exit=0 "logTail": "beat 2640\nbeat 2670\nbeat 2700\nbeat 2730\nbeat 2760\n"
+2026-11-04T07:04:33.052Z,kn-eval-l7-job-reopened-polled,poll at 51.3 min,exit=0 "logTail": "beat 2940\nbeat 2970\nbeat 3000\nbeat 3030\nbeat 3060\n"
+2026-11-04T07:09:40.295Z,kn-eval-l7-job-reopened-polled,poll at 56.4 min,exit=0 "logTail": "beat 3240\nbeat 3270\nbeat 3300\nbeat 3330\nbeat 3360\n"
+2026-11-04T07:14:54.373Z,kn-eval-l7-job-reopened-polled,poll at 61.6 min,exit=0 "logTail": "beat 3570\nbeat 3600\nbeat 3630\nbeat 3660\nbeat 3690\n"
+2026-11-04T07:19:59.311Z,kn-eval-l7-job-reopened-polled,poll at 66.7 min,exit=0 "logTail": "beat 3870\nbeat 3900\nbeat 3930\nbeat 3960\nbeat 3990\n"
+2026-11-04T07:25:04.077Z,kn-eval-l7-job-reopened-polled,poll at 71.8 min,exit=0 "logTail": "beat 4170\nbeat 4200\nbeat 4230\nbeat 4260\nbeat 4290\n"
+2026-11-04T07:30:09.116Z,kn-eval-l7-job-reopened-polled,poll at 76.9 min,exit=0 "logTail": "beat 4470\nbeat 4500\nbeat 4530\nbeat 4560\nbeat 4590\n"
+2026-11-04T07:35:14.283Z,kn-eval-l7-job-reopened-polled,poll at 81.9 min,exit=0 "logTail": "beat 4770\nbeat 4800\nbeat 4830\nbeat 4860\nbeat 4890\n"
+2026-11-04T07:40:19.625Z,kn-eval-l7-job-reopened-polled,poll at 87.0 min,exit=0 "logTail": "beat 5100\nbeat 5130\nbeat 5160\nbeat 5190\nbeat 5220\n"
+2026-11-04T07:45:25.037Z,kn-eval-l7-job-reopened-polled,poll at 92.1 min,exit=0 "logTail": "beat 5400\nbeat 5430\nbeat 5460\nbeat 5490\nbeat 5520\n"
+2026-11-04T07:47:55.823Z,kn-eval-l6-job-tab-open,final at 95.4 min,status 404
+2026-11-04T07:47:56.195Z,kn-eval-l7-job-reopened-polled,final at 94.6 min,beat 5670

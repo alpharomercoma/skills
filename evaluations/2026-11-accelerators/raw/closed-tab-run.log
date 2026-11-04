@@ -1,0 +1,167 @@
+04:35:43  kn-eval-s4b-closed job started pid 112
+04:35:43 0.0 kn-eval-s4b-closed tab closed 
+04:36:22  kn-eval-s4c-closed-rest job started pid 97
+04:36:22 0.0 kn-eval-s4c-closed-rest tab closed 
+04:36:59  kn-eval-s4d-closed-ws job started pid 97
+04:37:00  kn-eval-s4d-closed-ws socket open readyState 1
+04:37:00 0.0 kn-eval-s4d-closed-ws tab closed 
+04:37:01  this notebook status Failed to save draft.
+04:37:01 0.0 kn-eval-s4d-closed-ws status Running: a minute
+04:37:01 0.6 kn-eval-s4c-closed-rest status Running: 2 minutes
+04:37:01  kn-eval-gpu status Running: 2 minutes
+04:37:01  kn-eval-s5-foreground status Running: 4 minutes
+04:37:01 1.3 kn-eval-s4b-closed status Running: 6 minutes
+04:37:01  kn-eval-cli-nvidiah100 status Successful
+04:37:01  kn-eval-cli-nvidial4x1 status Successful
+04:37:01  kn-eval-cli-nvidial4 status Successful
+04:37:01  kn-eval-cli-nvidiateslat4 status Successful
+04:37:01  kn-eval-tpu status Queued
+04:37:01  kn-eval-s4-detached-closed status Cancelled
+04:37:01  kn-eval-s3b-detached-poll status Cancelled
+04:37:01  kn-eval-s3a-detached-nopoll status Cancelled
+04:37:01  kn-eval-s2-idle-closed status Cancelled
+04:37:01  kn-eval-s1-idle-open status Running: an hour
+04:37:02 0.7 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+04:37:05 0.7 kn-eval-s4c-closed-rest job via sidecar beat 1 elapsed_s=30 utc=1793767013
+04:37:05 0.1 kn-eval-s4d-closed-ws socket state 1
+04:40:32  kn-eval-gpu status Cancelled
+04:41:42  kn-u1-cli status Running: 2 minutes
+04:42:51  kn-u1-current status Running: just now
+04:42:52 6.5 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+04:42:55 6.5 kn-eval-s4c-closed-rest job via sidecar beat 13 elapsed_s=390 utc=1793767373
+04:42:55 5.9 kn-eval-s4d-closed-ws socket state 1
+04:45:14  kn-u1-current status Interactive Session with GPU T4 x2 Cancelling...
+04:45:14  kn-u1-cli status Failed
+04:46:23  kn-u1-cli status Running: 2 minutes
+04:46:23  kn-u1-current status Cancelled
+04:46:23  kn-u1-cli status Failed
+04:47:32  kn-u2-current status Running: 2 minutes
+04:47:32  kn-u1-cli status Running: 3 minutes
+04:47:32  kn-u1-cli status Failed
+04:48:41  kn-u1-cli status Successful
+04:48:41  kn-u1-cli status Failed
+04:48:42 12.3 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+04:48:45 12.4 kn-eval-s4c-closed-rest job via sidecar beat 24 elapsed_s=720 utc=1793767703
+04:48:45 11.8 kn-eval-s4d-closed-ws socket state 1
+04:49:54  kn-u1-cli status Successful
+04:49:54  kn-u1-cli status Failed
+04:51:03  kn-u2-current status Cancelled
+04:51:03  kn-u1-cli status Successful
+04:51:03  kn-u1-cli status Failed
+04:52:13  kn-u1-cli status Successful
+04:52:13  kn-u1-cli status Failed
+04:53:22  kn-u4-cli status Running: just now
+04:53:22  kn-u1-none status Running: just now
+04:53:22  kn-u1-cli status Successful
+04:53:22  kn-u1-cli status Failed
+04:54:31  kn-u1-cli status Successful
+04:54:31  kn-u1-cli status Failed
+04:54:32 18.2 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+04:54:35 18.2 kn-eval-s4c-closed-rest job via sidecar beat 36 elapsed_s=1080 utc=1793768063
+04:54:35 17.6 kn-eval-s4d-closed-ws socket state 1
+04:55:44  kn-u1-cli status Successful
+04:55:44  kn-u1-cli status Failed
+04:56:54  kn-u4-cli status Successful
+04:56:54  kn-u1-none status Successful
+04:56:54  kn-u1-cli status Successful
+04:56:54  kn-u1-cli status Failed
+04:58:03  kn-u4-current status Running: a minute
+04:58:03  kn-u2-none status Running: a minute
+04:58:03  kn-u1-cli status Successful
+04:58:03  kn-u1-cli status Failed
+04:58:03  kn-eval-s1-idle-open status Cancelled
+04:59:12  kn-u1-cli status Successful
+04:59:12  kn-u1-cli status Failed
+05:00:21  kn-u4-current status Successful
+05:00:21  kn-u1-cli status Successful
+05:00:21  kn-u1-cli status Failed
+05:00:22 24.0 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:00:25 24.0 kn-eval-s4c-closed-rest job via sidecar beat 48 elapsed_s=1440 utc=1793768423
+05:00:25 23.4 kn-eval-s4d-closed-ws socket state 1
+05:01:35  kn-u4-none status Running: just now
+05:01:35  kn-u2-none status Successful
+05:01:35  kn-u1-cli status Successful
+05:01:35  kn-u1-cli status Failed
+05:02:44  kn-u5-current status Running: just now
+05:02:44  kn-u1-cli status Successful
+05:02:44  kn-u1-cli status Failed
+05:03:53  kn-u1-cli status Successful
+05:03:53  kn-u1-cli status Failed
+05:05:02  kn-u1-cli status Successful
+05:05:02  kn-u1-cli status Failed
+05:06:12  kn-u1-cli status Successful
+05:06:12  kn-u1-cli status Failed
+05:06:12 29.8 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:06:15 29.9 kn-eval-s4c-closed-rest job via sidecar beat 59 elapsed_s=1770 utc=1793768753
+05:06:15 29.3 kn-eval-s4d-closed-ws socket state 1
+05:07:24  kn-u1-cli status Successful
+05:07:24  kn-u1-cli status Failed
+05:08:34  kn-u1-cli status Successful
+05:08:34  kn-u1-cli status Failed
+05:09:43  kn-u1-cli status Successful
+05:09:43  kn-u1-cli status Failed
+05:10:52  kn-u5-current status Cancelled
+05:10:52  kn-u1-cli status Successful
+05:10:52  kn-u1-cli status Failed
+05:12:01  kn-u4-none status Successful
+05:12:01  kn-u1-cli status Successful
+05:12:01  kn-u1-cli status Failed
+05:12:02 35.7 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:12:05 35.7 kn-eval-s4c-closed-rest job via sidecar beat 71 elapsed_s=2130 utc=1793769113
+05:12:05 35.1 kn-eval-s4d-closed-ws socket state 1
+05:13:14  kn-u4-new status Running: a minute
+05:13:14  kn-u1-new status Running: a minute
+05:13:14  kn-u1-cli status Successful
+05:13:14  kn-u1-cli status Failed
+05:14:23  kn-u1-cli status Successful
+05:14:23  kn-u1-cli status Failed
+05:15:32  kn-eval-l2-job-unanswered status Running: 2 minutes
+05:15:32  kn-u4-new status Successful
+05:15:32  kn-u1-cli status Successful
+05:15:32  kn-u1-cli status Failed
+05:16:42  kn-u1-new status Cancelled
+05:16:42  kn-u1-cli status Successful
+05:16:42  kn-u1-cli status Failed
+05:16:42 41.0 kn-eval-s4b-closed status Cancelled
+05:17:51  kn-u2-new status Running: just now
+05:17:51  kn-eval-l4-prompt-cancel status Running: just now
+05:17:51  kn-u1-cli status Successful
+05:17:51  kn-u1-cli status Failed
+05:17:51 40.9 kn-eval-s4d-closed-ws status Cancelled
+05:17:51 41.5 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:17:55 41.5 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:17:55 40.9 kn-eval-s4d-closed-ws socket state 3
+05:19:04  kn-u1-cli status Successful
+05:19:04  kn-u1-cli status Failed
+05:20:13  kn-eval-l3-job-answered status Running: just now
+05:20:13  kn-u1-cli status Successful
+05:20:13  kn-u1-cli status Failed
+05:21:23  kn-u1-cli status Successful
+05:21:23  kn-u1-cli status Failed
+05:22:33  kn-u1-cli status Successful
+05:22:33  kn-u1-cli status Failed
+05:23:42  kn-u2-new status Interactive Session with GPU T4 x2 Cancelling...
+05:23:42  kn-u1-cli status Successful
+05:23:42  kn-u1-cli status Failed
+05:23:43 47.3 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:23:46 47.4 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:23:46 46.8 kn-eval-s4d-closed-ws socket state 3
+05:24:55  kn-u2-new status Cancelled
+05:24:55  kn-u1-cli status Successful
+05:24:55  kn-u1-cli status Failed
+05:26:04  kn-u1-cli status Successful
+05:26:04  kn-u1-cli status Failed
+05:27:14  kn-u1-cli status Successful
+05:27:14  kn-u1-cli status Failed
+05:29:17 52.9 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:29:20 53.0 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:29:20 52.3 kn-eval-s4d-closed-ws socket state 3
+05:34:26 58.1 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:34:30 58.1 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:34:30 57.5 kn-eval-s4d-closed-ws socket state 3
+05:39:36 63.2 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:39:39 63.3 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:39:39 62.7 kn-eval-s4d-closed-ws socket state 3
+05:44:46 68.4 kn-eval-s4c-closed-rest rest poll 200 idle/conn0
+05:44:49 68.4 kn-eval-s4c-closed-rest job via sidecar JOB FINISHED
+05:44:49 67.8 kn-eval-s4d-closed-ws socket state 3

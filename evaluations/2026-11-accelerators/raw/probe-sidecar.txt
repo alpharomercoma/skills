@@ -1,0 +1,22 @@
+kernels before ["idle"]
+sidecar create 201 313ms
+first exec after create {"status":"ok","ms":542,"totalMs":2138,"out":"ready"}
+sidecar RSS MiB 103
+shell ok {"out":"root\n/kaggle/working\n4\n__rc__ 0","ms":559}
+shell exit 7 {"out":"__rc__ 7","err":"oops"}
+latency, notebook kernel idle (ms) {"median":558,"max":834}
+states via api during busy cell [{"state":"busy","sidecar":false},{"state":"idle","sidecar":true}]
+latency, notebook kernel busy (ms) {"median":557,"max":831}
+shell during busy cell {"out":"beat 26 elapsed_s=780 utc=1793764817\n%CPU COMMAND\n 8.2 python3\n 1.3 jupyter-server\n__rc__ 0","ms":594}
+page kernel status busy
+after the cell, states ["idle","idle"]
+cells unchanged 1
+contents root 200 {"path":"","entries":["job.py","job.log",".virtual_documents"]}
+contents get job.log 200 984 chars
+contents get kaggle/working/job.log 404 not found
+contents put 300 KB 201 1273ms
+contents get back 200 796ms sha256 matches
+landed at 
+contents delete 400
+delete sidecar 204
+kernels after 1

@@ -1,0 +1,5 @@
+accel,slug,push_exit,push_msg,seconds_to_end,final_status,hardware,run_id_found
+NvidiaTeslaT4,kn-eval-cli-nvidiateslat4,0,Kernel version 2 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidiateslat4 ,102,alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.COMPLETE",2 Tesla T4; 15360 MiB,1
+NvidiaL4,kn-eval-cli-nvidial4,0,Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidial4 ,88,alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.COMPLETE",2 Tesla T4; 15360 MiB,1
+NvidiaL4X1,kn-eval-cli-nvidial4x1,0,Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidial4x1 ,99,alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.COMPLETE",2 Tesla T4; 15360 MiB,1
+NvidiaH100,kn-eval-cli-nvidiah100,0,Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidiah100 ,82,alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.COMPLETE",2 Tesla T4; 15360 MiB,1

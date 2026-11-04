@@ -1,0 +1,35 @@
+04:23:19 NvidiaTeslaT4 push: Kernel version 2 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidiateslat4 
+04:23:20 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+04:23:36 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+04:23:53 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+
+04:24:11 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+04:24:26 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+04:24:42 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.RUNNING"
+04:24:58 NvidiaTeslaT4 status: alpharomercoma/kn-eval-cli-nvidiateslat4 has status "KernelWorkerStatus.COMPLETE"
+04:25:02 NvidiaL4 push: Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidial4 
+04:25:03 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.RUNNING"
+04:25:20 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.RUNNING"
+04:25:37 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.RUNNING"
+
+04:25:55 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.RUNNING"
+04:26:10 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.RUNNING"
+04:26:27 NvidiaL4 status: alpharomercoma/kn-eval-cli-nvidial4 has status "KernelWorkerStatus.COMPLETE"
+04:26:30 NvidiaL4X1 push: Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidial4x1 
+04:26:30 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.QUEUED"
+04:26:46 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.RUNNING"
+04:27:02 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.RUNNING"
+
+04:27:20 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.RUNNING"
+04:27:36 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.RUNNING"
+04:27:51 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.RUNNING"
+04:28:07 NvidiaL4X1 status: alpharomercoma/kn-eval-cli-nvidial4x1 has status "KernelWorkerStatus.COMPLETE"
+04:28:10 NvidiaH100 push: Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidiah100 
+04:28:10 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.QUEUED"
+04:28:26 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+04:28:42 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+
+04:28:59 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+04:29:14 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+04:29:30 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.COMPLETE"
+DONE

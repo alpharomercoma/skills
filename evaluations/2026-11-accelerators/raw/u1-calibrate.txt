@@ -1,0 +1,36 @@
+run started
+Starting training
+Starting training
+step 200 loss 0.0015
+Starting training
+step 200 loss 0.0015
+step 400 loss 0.0005
+step 200 loss 0.0015
+step 400 loss 0.0005
+step 600 loss 0.0002
+step 400 loss 0.0005
+step 600 loss 0.0002
+step 800 loss 0.0001
+step 600 loss 0.0002
+step 800 loss 0.0001
+step 1000 loss 0.0001
+
+===== cell 0  exec=1  # Small image-classifier training run on synthetic data.
+Starting training
+step 200 loss 0.0015
+step 400 loss 0.0005
+step 600 loss 0.0002
+step 800 loss 0.0001
+step 1000 loss 0.0001
+Finished. final loss 0.0001
+
+{
+  "done": true,
+  "errored": false,
+  "interrupted": false,
+  "errorCells": [],
+  "notRunCells": [],
+  "indeterminate": false,
+  "sessionLost": false,
+  "timedOut": false
+}

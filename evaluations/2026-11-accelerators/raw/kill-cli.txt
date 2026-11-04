@@ -1,0 +1,17 @@
+{ "started": true, "seconds": 21, "kernel": { "name": "Python 3", "status": "idle", "connected": tru
+
+run started 
+kill the notebook kernel in the gap: sent 50 
+wait after kill: exit 3
+ ===== cell 0 exec=· import os, time ===== cell 1 exec=· print("second cell") { "done": true, "errored": false, "interrupted": false, "errorCells": [], "notRunCells": [ 0, 1 ], "kernelRestarted": false, "indeterminate": true, "sessionLost": false, "timedOut": 
+
+Kernel is idle, but the notebook has no record of these cells. Either the tab closed or reloaded during the run, or the kernel restarted. Check files on disk with: sh
+{ "from": "/var/folders/4y/4hgfgs110rg9f95s3w5y4r240000gn/T/tmp.blrwKSsn2s/b.py", "cells":
+
+run-cell 0 of 2, second never run: exit 0
+cell 0 started ===== cell 0 exec=1 print("first") first { "done": true, "errored": false, "interrupted": false, "errorCells": [], "kernelRestarted": false, "indeterminate": false, "sessionLost": false, "timedOut": false 
+
+clean Run All: exit 0
+run started ===== cell 0 exec=2 print("first") first ===== cell 1 exec=3 print("second") second { "done": true, "errored": false, "interrupted": false, "errorCells": [], "notRunCells": [], "kernelRest
+
+{ "stopped": true } 

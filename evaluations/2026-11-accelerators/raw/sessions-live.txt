@@ -1,0 +1,6 @@
+kn-eval-s4d-closed-ws          interactive  running   17 minutes   none
+kn-eval-s4c-closed-rest        interactive  running   18 minutes   none
+kn-eval-s5-foreground          interactive  running   20 minutes   none
+kn-eval-s4b-closed             interactive  running   22 minutes   none
+kn-eval-tpu                    interactive  queued    None         TPU v5e-8
+kn-eval-s1-idle-open           interactive  running   an hour      none

@@ -1,0 +1,18 @@
+06:38:44
+== sessions, from its own tab
+[('kn-eval-l7-job-reopened-polled', 'running', '27 minutes'), ('kn-eval-l6-job-tab-open', 'running', '27 minutes'), ('kn-eval-s4f-closed-nothing', 'running', '33 minutes'), ('kn-eval-s4e-closed-rest-only', 'running', '35 minutes'), ('kn-eval-s5-foreground', 'running', '2 hours'), ('kn-eval-tpu', 'queued', None)]
+took 6 s
+== L1 still running at this point? (started 05:19:23)
+== interrupt
+{ "interruptSent": true }  [exit 0]
+== wait after the cell ended, reopened tab
+{ "done": true, "errored": false, "interrupted": false, "errorCells": [], "notRunCells": [ 0 ], "kernelRestarted": false, "indeterminate": true, "sessionLost": false, "timedOut": false } Kernel is idle, but the notebook has no record of these cells. Either the tab closed or reloaded during the run, or the kernel restarted. Check files on disk with: sh  [exit 3]
+== status
+l-s5-foreground/edit", "title": "kn-eval-s5-foreground", "accelerator": "None", "internet": true, "session": "running", "uptime": "2h:5m", "kernel": "idle", "busy": false, "cells": 1, "versions": 0, "dialogs": [] } 
+== resources after the cell ended
+{ "session": "running", "capturedAt": "2026-11-04T06:39:16.781Z", "accelerator": "No Accelerator", "uptime": "2h:5m", "sessionLimit": "12 hours", "cpuPercent": 2, "ram": { "usedMiB": 557.8, "maxMiB": 30720 }, "
+ [exit 0]
+06:01:08.975Z,L5,poll,exit=1 ERROR: No live session. Run: start 
+06:01:08.976Z,L5,ended,ERROR: No live session. Run: start 
+06:39:10.317Z,kn-eval-s5-foreground,state,running|
+{ "stopped": true } 

@@ -1,0 +1,30 @@
+=== C13: alternate between two notebooks, marking each with its own sentinel
+alternating reads: 20, wrong-notebook results: 0 (need 0)
+{"cells":1,"draftSaved":true}
+after a write to X: X has X2 = 1, Y has X2 = 0 (need 1 and 0)
+open editor tabs: 3
+ERROR: Several notebooks are open, so pass --url with one of:
+read with no --url and several tabs: exit 1 (must refuse)
+ERROR: "set-cell" changes something, so it needs --url <notebook url>.
+write with no --url: exit 1 (must refuse)
+=== C14: an off session returns no live values
+{"session":"off"}
+{"session":"off"}
+{"session":"off"}
+{"session":"off"} (after reopening)
+=== C15: during a busy foreground cell
+ERROR: The notebook kernel is busy, so this would wait until the running cell ends. For shell commands use: sh. For readings use: 
+busy exec: exit 1 in 6.9 s (need refusal within 10)
+wait --timeout 5: exit 124 in 6.7 s (need 124 within 12)
+ls: cannot access '/kaggle/working/SIDE_EFFECT': No such file or directory
+side-channel-ok
+busy sh took 4.8 s; SIDE_EFFECT must not exist
+"kernel":"unknown","busy":true,
+=== sessions shows what the panel shows
+kn-eval-l3-job-answered running none
+kn-eval-l4-prompt-cancel running none
+kn-eval-l2-job-unanswered running none
+kn-eval-s4c-closed-rest running none
+kn-eval-s5-foreground running none
+kn-eval-tpu queued TPU v5e-8
+=== done 05:30:16

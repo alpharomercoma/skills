@@ -1,0 +1,22 @@
+== status
+{ "url": "https://www.kaggle.com/code/alpharomercoma/kn-eval-s5-foreground/edit", "title": "kn-eval-s5-foreground", "accelerator": "None", "internet": true, "session": "starting", "uptime": null, "kernel": "busy", "busy": true, "cells": 1, "versions": 0, "dialogs": [] }  [exit 0]
+== resources
+ERROR: The resources panel never filled in. Pill: "Draft Session Starting …"  [exit 124]
+== wait --timeout 5
+{ "done": false, "errored": false, "interrupted": false, "errorCells": [], "kernelRestarted": false, "indeterminate": false, "sessionLost": false, "timedOut": true, "runningCell": null }  [exit 124]
+== outputs --max 1
+ ===== cell 0 exec=· import time …(377 earlier chars cut)…  [exit 0]
+== sh
+ok 1 06:03:59 up 1:33, 0 user, load average: 0.00, 0.01, 0.00  [exit 0]
+== job list
+[ { "name": "demo", "exists": true, "running": false, "pid": 919, "exitCode": 4, "lostWithoutExitCode": false, "elapsedSeconds": 4604, "log": "/kaggle/working/demo.log", "logBytes": 7 }, { "name": "kn
+ [exit 0]
+== status, reopened on busy cell
+{ "url": "https://www.kaggle.com/code/alpharomercoma/kn-eval-s5-foreground/edit", "title": "kn-eval-s5-foreground", "accelerator": "None", "internet": true, "session": "running", "note": "The pill says Starting, but the session server answers. resources is unavailable on this tab until the cell ends: use sh or monitor.", "uptime
+
+== resources, reopened on busy cell
+ERROR: Kaggle shows no resource panel on this tab, because it reconnected to a session with a busy cell (the pill still says Starting). The session is live: read it with sh, or with monitor start and monitor report.
+exit 1
+== status, queued TPU, must stay starting
+{ "url": "https://www.kaggle.com/code/alpharomercoma/kn-eval-tpu/edit", "title": "kn-eval-tpu", "accelerator": "TPU v5e-8", "internet": true, "session": "starting", "uptime": null, "kernel": "unknown", "busy": false, "cells": 1, "versions": 0, "dialogs": [] } 
+

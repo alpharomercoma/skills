@@ -1,0 +1,11 @@
+utc,slug,state,pill
+2026-11-04T03:47:22.410Z,kn-eval-s1-idle-open,running,Draft Session (8m) HDD CPU RAM
+2026-11-04T03:47:22.413Z,kn-eval-s3a-detached-nopoll,running,Draft Session (6m) HDD CPU RAM
+2026-11-04T03:47:22.415Z,kn-eval-s3b-detached-poll,running,Draft Session (5m) HDD CPU RAM
+2026-11-04T03:47:22.416Z,kn-eval-s5-foreground,off,Draft Session off (run a cell to start)
+2026-11-04T04:31:13.863Z,kn-eval-s3b-detached-poll,off,Draft Session off (run a cell to start)
+2026-11-04T04:33:43.951Z,kn-eval-s3a-detached-nopoll,off,Draft Session off (run a cell to start)
+2026-11-04T04:33:43.959Z,kn-eval-s5-foreground,starting,Draft Session Starting …
+2026-11-04T04:33:58.966Z,kn-eval-s5-foreground,starting,Draft Session Running
+2026-11-04T04:34:13.974Z,kn-eval-s5-foreground,running,Draft Session (0m) HDD CPU RAM
+2026-11-04T04:56:47.782Z,kn-eval-s1-idle-open,off,Draft Session off (run a cell to start)

@@ -1,0 +1,109 @@
+08:01:51
+== put: overwrite an existing file
+{ "path": "/kaggle/working/u.txt", "bytes": 9, "verified": true }  [exit 0]
+replaced 640 1  (content, mode kept, temp files left)
+== put: a failure must leave the target alone
+ERROR: Copy failed: IsADirectoryError: [Errno 21] Is a directory: '/kaggle/working/adir.kn-b8c8acccccf74e76ba11f0be5aea7700' -> '/
+ [exit 1]
+keep 1 3  (dir content, temp files left, dir entries)
+== job stop: wrapper dead, child alive
+{ "started": true, "name": "surv", "pid": 743, "log": "/kaggle/working/surv.log" } 
+{ "name": "surv", "exists": true, "running": false, "pid": 743, "exitCode": null, "stoppedBy": null, "lostWithoutExitCode": true, "elapsedSeconds": 10
+
+2  left before stop
+{ "stopped": true, "name": "surv", "stoppedBy": "SIGTERM", "exitCode": null }  [exit 0]
+0  left after stop
+== job stop: already ended, nothing left
+{ "stopped": false, "alreadyEnded": true, "name": "done1", "exists": true, "running": false, "pid": 845, "exitCode": 5, "stoppedBy": null, "
+ [exit 0]
+== the polled job is untouched
+{ "name": "long", "exists": true, "running": false, "pid": 132, "exitCode": 0, "stoppedBy": null, "lostWithoutExitCode":
+
+== what the .kn- count was, and how the polled job ended
+.kn-jobs beat 5970 JOB FINISHED 0 
+08:06:45
+== normal job reads as running, and stops
+{ "started": true, "name": "ok1", "pid": 921, "log": "/kaggle/working/ok1.log" }
+
+{ "name": "ok1", "exists": true, "running": true, "pid": 921, "exitCode": null, "stoppedBy
+
+{ "stopped": true, "name": "ok1", "stoppedBy": "SIGTERM", "exitCode": null }  [exit 0]
+== wrapper dead, child alive: restart refused, then stop works, then restart works
+{ "started": true, "name": "sv2", "pid": 977, "log": "/kaggle/working/sv2.log" }
+
+{ "error": "Processes from the last run of sv2 are still alive. Run: job stop sv2", "name": "sv2", "exists": true, "runn
+ [exit 1]
+{ "stopped": true, "name": "sv2", "stoppedBy": "SIGTERM", "exitCode": null }  [exit 0]
+0  left
+{ "started": true, "name": "sv2", "pid": 1059, "log": "/kaggle/working
+ [exit 0]
+== monitor still starts through the same path
+{ "started": true, "name": "kn-monitor", "pid": 1113, "log": "/kaggle/working/kn
+
+{ "samples": 10, "seconds": 18, "lastSampleAgeSeconds": 1.2, "gpus": [], "cpu": { "meanPercentOfAllCores": 3.4
+
+{ "stopped": true, "name": "kn-monitor", "stoppedBy": "SIGTERM", "exitCode": nul
+
+08:10:57
+== synthetic token in real cell output: tail and outputs
+ERROR: locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('menuitem', { name: /Start session/i }).first()[22m
+[2m    - locator resolved to <li tabindex="0" role="menuitem" class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-dense MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-dense MuiMenuItem-gutters sc-gVpmpR bZwLd css-1n0tlit">…</li>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not stable[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+
+
+run exit 0
+lines showing the secret: 0, lines showing <token>: 12
+outputs --max 40, lines showing the secret: 0
+{ "stopped": true } 
+== wrapper dead, child alive: status says running, start refused, stop works
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+ [exit 1]
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+ [exit 1]
+0  left
+== normal job, then finished job
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+
+ERROR: SyntaxError: source code string cannot contain null bytes (<string>)
+
+08:13:38
+== after the fix: wrapper dead, child alive
+{ "started": true, "name": "sv3", "pid": 1328, "log": "/kaggle/working
+
+{ "name": "sv3", "exists": true, "running": true, "pid": 1328, "exitCode": null,
+
+{ "error": "Job sv3 is already running.", "name": "sv3", "exists": tru
+ [exit 1]
+{ "stopped": true, "name": "sv3", "stoppedBy": "SIGTERM", "exitCode": null }  [exit 0]
+0  left
+== normal job
+{ "name": "ok2", "exists": true, "running": true, "pid": 1427, "exitCo
+
+{ "stopped": true, "name": "ok2", "stoppedBy": "SIGTERM", "exitCode": 
+
+== finished job with its own code
+{ "name": "ok3", "exists": true, "running": false, "pid": 1483, "exitCode": 9, "stoppedBy": null, "l
+
+== monitor
+{ "started": true, "name": "kn-monitor", "pid": 1557, "log":
+
+{ "samples": 6, "seconds": 10, "lastSampleAgeSeconds": 1.5, "gpus": []
+
+{ "stopped": true, "name": "kn-monitor", "stoppedBy": "SIGTERM", "exit
+

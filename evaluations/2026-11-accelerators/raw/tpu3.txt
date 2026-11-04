@@ -1,0 +1,3 @@
+08:24:00 accel {"changed":true,"accelerator":"TPU v5e-8","hoursRemaining":20,"session":"off"}
+08:24:16 requested; start returned 124 Session did not come up in time. Pill: "Draft Session Starting …". Dialogs: []
+08:24:16 pill +0.0min Draft Session Starting …

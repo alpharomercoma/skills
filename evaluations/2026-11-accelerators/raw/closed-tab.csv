@@ -1,0 +1,168 @@
+utc,minutes_since_close,slug,event,detail
+2026-11-04T04:35:43.706Z,,kn-eval-s4b-closed,job started,pid 112
+2026-11-04T04:35:43.756Z,0.0,kn-eval-s4b-closed,tab closed,
+2026-11-04T04:36:22.804Z,,kn-eval-s4c-closed-rest,job started,pid 97
+2026-11-04T04:36:22.856Z,0.0,kn-eval-s4c-closed-rest,tab closed,
+2026-11-04T04:36:59.228Z,,kn-eval-s4d-closed-ws,job started,pid 97
+2026-11-04T04:37:00.247Z,,kn-eval-s4d-closed-ws,socket open,readyState 1
+2026-11-04T04:37:00.297Z,0.0,kn-eval-s4d-closed-ws,tab closed,
+2026-11-04T04:37:01.749Z,,this notebook,status,Failed to save draft.
+2026-11-04T04:37:01.750Z,0.0,kn-eval-s4d-closed-ws,status,Running: a minute
+2026-11-04T04:37:01.750Z,0.6,kn-eval-s4c-closed-rest,status,Running: 2 minutes
+2026-11-04T04:37:01.751Z,,kn-eval-gpu,status,Running: 2 minutes
+2026-11-04T04:37:01.751Z,,kn-eval-s5-foreground,status,Running: 4 minutes
+2026-11-04T04:37:01.753Z,1.3,kn-eval-s4b-closed,status,Running: 6 minutes
+2026-11-04T04:37:01.753Z,,kn-eval-cli-nvidiah100,status,Successful
+2026-11-04T04:37:01.753Z,,kn-eval-cli-nvidial4x1,status,Successful
+2026-11-04T04:37:01.754Z,,kn-eval-cli-nvidial4,status,Successful
+2026-11-04T04:37:01.754Z,,kn-eval-cli-nvidiateslat4,status,Successful
+2026-11-04T04:37:01.754Z,,kn-eval-tpu,status,Queued
+2026-11-04T04:37:01.754Z,,kn-eval-s4-detached-closed,status,Cancelled
+2026-11-04T04:37:01.754Z,,kn-eval-s3b-detached-poll,status,Cancelled
+2026-11-04T04:37:01.754Z,,kn-eval-s3a-detached-nopoll,status,Cancelled
+2026-11-04T04:37:01.754Z,,kn-eval-s2-idle-closed,status,Cancelled
+2026-11-04T04:37:01.755Z,,kn-eval-s1-idle-open,status,Running: an hour
+2026-11-04T04:37:02.173Z,0.7,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T04:37:05.294Z,0.7,kn-eval-s4c-closed-rest,job via sidecar,beat 1 elapsed_s=30 utc=1793767013
+2026-11-04T04:37:05.295Z,0.1,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T04:40:32.948Z,,kn-eval-gpu,status,Cancelled
+2026-11-04T04:41:42.251Z,,kn-u1-cli,status,Running: 2 minutes
+2026-11-04T04:42:51.490Z,,kn-u1-current,status,Running: just now
+2026-11-04T04:42:52.296Z,6.5,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T04:42:55.770Z,6.5,kn-eval-s4c-closed-rest,job via sidecar,beat 13 elapsed_s=390 utc=1793767373
+2026-11-04T04:42:55.771Z,5.9,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T04:45:14.194Z,,kn-u1-current,status,Interactive Session with GPU T4 x2 Cancelling...
+2026-11-04T04:45:14.195Z,,kn-u1-cli,status,Failed
+2026-11-04T04:46:23.415Z,,kn-u1-cli,status,Running: 2 minutes
+2026-11-04T04:46:23.418Z,,kn-u1-current,status,Cancelled
+2026-11-04T04:46:23.419Z,,kn-u1-cli,status,Failed
+2026-11-04T04:47:32.638Z,,kn-u2-current,status,Running: 2 minutes
+2026-11-04T04:47:32.644Z,,kn-u1-cli,status,Running: 3 minutes
+2026-11-04T04:47:32.644Z,,kn-u1-cli,status,Failed
+2026-11-04T04:48:41.861Z,,kn-u1-cli,status,Successful
+2026-11-04T04:48:41.862Z,,kn-u1-cli,status,Failed
+2026-11-04T04:48:42.344Z,12.3,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T04:48:45.439Z,12.4,kn-eval-s4c-closed-rest,job via sidecar,beat 24 elapsed_s=720 utc=1793767703
+2026-11-04T04:48:45.446Z,11.8,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T04:49:54.662Z,,kn-u1-cli,status,Successful
+2026-11-04T04:49:54.668Z,,kn-u1-cli,status,Failed
+2026-11-04T04:51:03.886Z,,kn-u2-current,status,Cancelled
+2026-11-04T04:51:03.892Z,,kn-u1-cli,status,Successful
+2026-11-04T04:51:03.892Z,,kn-u1-cli,status,Failed
+2026-11-04T04:52:13.141Z,,kn-u1-cli,status,Successful
+2026-11-04T04:52:13.145Z,,kn-u1-cli,status,Failed
+2026-11-04T04:53:22.543Z,,kn-u4-cli,status,Running: just now
+2026-11-04T04:53:22.548Z,,kn-u1-none,status,Running: just now
+2026-11-04T04:53:22.550Z,,kn-u1-cli,status,Successful
+2026-11-04T04:53:22.550Z,,kn-u1-cli,status,Failed
+2026-11-04T04:54:31.764Z,,kn-u1-cli,status,Successful
+2026-11-04T04:54:31.769Z,,kn-u1-cli,status,Failed
+2026-11-04T04:54:32.258Z,18.2,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T04:54:35.562Z,18.2,kn-eval-s4c-closed-rest,job via sidecar,beat 36 elapsed_s=1080 utc=1793768063
+2026-11-04T04:54:35.562Z,17.6,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T04:55:44.791Z,,kn-u1-cli,status,Successful
+2026-11-04T04:55:44.796Z,,kn-u1-cli,status,Failed
+2026-11-04T04:56:54.013Z,,kn-u4-cli,status,Successful
+2026-11-04T04:56:54.014Z,,kn-u1-none,status,Successful
+2026-11-04T04:56:54.014Z,,kn-u1-cli,status,Successful
+2026-11-04T04:56:54.014Z,,kn-u1-cli,status,Failed
+2026-11-04T04:58:03.344Z,,kn-u4-current,status,Running: a minute
+2026-11-04T04:58:03.355Z,,kn-u2-none,status,Running: a minute
+2026-11-04T04:58:03.355Z,,kn-u1-cli,status,Successful
+2026-11-04T04:58:03.356Z,,kn-u1-cli,status,Failed
+2026-11-04T04:58:03.356Z,,kn-eval-s1-idle-open,status,Cancelled
+2026-11-04T04:59:12.581Z,,kn-u1-cli,status,Successful
+2026-11-04T04:59:12.582Z,,kn-u1-cli,status,Failed
+2026-11-04T05:00:21.808Z,,kn-u4-current,status,Successful
+2026-11-04T05:00:21.812Z,,kn-u1-cli,status,Successful
+2026-11-04T05:00:21.817Z,,kn-u1-cli,status,Failed
+2026-11-04T05:00:22.299Z,24.0,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:00:25.828Z,24.0,kn-eval-s4c-closed-rest,job via sidecar,beat 48 elapsed_s=1440 utc=1793768423
+2026-11-04T05:00:25.829Z,23.4,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T05:01:35.044Z,,kn-u4-none,status,Running: just now
+2026-11-04T05:01:35.047Z,,kn-u2-none,status,Successful
+2026-11-04T05:01:35.047Z,,kn-u1-cli,status,Successful
+2026-11-04T05:01:35.047Z,,kn-u1-cli,status,Failed
+2026-11-04T05:02:44.282Z,,kn-u5-current,status,Running: just now
+2026-11-04T05:02:44.283Z,,kn-u1-cli,status,Successful
+2026-11-04T05:02:44.283Z,,kn-u1-cli,status,Failed
+2026-11-04T05:03:53.505Z,,kn-u1-cli,status,Successful
+2026-11-04T05:03:53.507Z,,kn-u1-cli,status,Failed
+2026-11-04T05:05:02.798Z,,kn-u1-cli,status,Successful
+2026-11-04T05:05:02.799Z,,kn-u1-cli,status,Failed
+2026-11-04T05:06:12.016Z,,kn-u1-cli,status,Successful
+2026-11-04T05:06:12.017Z,,kn-u1-cli,status,Failed
+2026-11-04T05:06:12.494Z,29.8,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:06:15.535Z,29.9,kn-eval-s4c-closed-rest,job via sidecar,beat 59 elapsed_s=1770 utc=1793768753
+2026-11-04T05:06:15.535Z,29.3,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T05:07:24.808Z,,kn-u1-cli,status,Successful
+2026-11-04T05:07:24.809Z,,kn-u1-cli,status,Failed
+2026-11-04T05:08:34.049Z,,kn-u1-cli,status,Successful
+2026-11-04T05:08:34.051Z,,kn-u1-cli,status,Failed
+2026-11-04T05:09:43.294Z,,kn-u1-cli,status,Successful
+2026-11-04T05:09:43.295Z,,kn-u1-cli,status,Failed
+2026-11-04T05:10:52.514Z,,kn-u5-current,status,Cancelled
+2026-11-04T05:10:52.515Z,,kn-u1-cli,status,Successful
+2026-11-04T05:10:52.515Z,,kn-u1-cli,status,Failed
+2026-11-04T05:12:01.738Z,,kn-u4-none,status,Successful
+2026-11-04T05:12:01.740Z,,kn-u1-cli,status,Successful
+2026-11-04T05:12:01.740Z,,kn-u1-cli,status,Failed
+2026-11-04T05:12:02.227Z,35.7,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:12:05.143Z,35.7,kn-eval-s4c-closed-rest,job via sidecar,beat 71 elapsed_s=2130 utc=1793769113
+2026-11-04T05:12:05.143Z,35.1,kn-eval-s4d-closed-ws,socket state,1
+2026-11-04T05:13:14.529Z,,kn-u4-new,status,Running: a minute
+2026-11-04T05:13:14.531Z,,kn-u1-new,status,Running: a minute
+2026-11-04T05:13:14.531Z,,kn-u1-cli,status,Successful
+2026-11-04T05:13:14.532Z,,kn-u1-cli,status,Failed
+2026-11-04T05:14:23.749Z,,kn-u1-cli,status,Successful
+2026-11-04T05:14:23.750Z,,kn-u1-cli,status,Failed
+2026-11-04T05:15:32.969Z,,kn-eval-l2-job-unanswered,status,Running: 2 minutes
+2026-11-04T05:15:32.974Z,,kn-u4-new,status,Successful
+2026-11-04T05:15:32.975Z,,kn-u1-cli,status,Successful
+2026-11-04T05:15:32.975Z,,kn-u1-cli,status,Failed
+2026-11-04T05:16:42.188Z,,kn-u1-new,status,Cancelled
+2026-11-04T05:16:42.192Z,,kn-u1-cli,status,Successful
+2026-11-04T05:16:42.192Z,,kn-u1-cli,status,Failed
+2026-11-04T05:16:42.192Z,41.0,kn-eval-s4b-closed,status,Cancelled
+2026-11-04T05:17:51.435Z,,kn-u2-new,status,Running: just now
+2026-11-04T05:17:51.436Z,,kn-eval-l4-prompt-cancel,status,Running: just now
+2026-11-04T05:17:51.437Z,,kn-u1-cli,status,Successful
+2026-11-04T05:17:51.437Z,,kn-u1-cli,status,Failed
+2026-11-04T05:17:51.438Z,40.9,kn-eval-s4d-closed-ws,status,Cancelled
+2026-11-04T05:17:51.945Z,41.5,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:17:55.013Z,41.5,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:17:55.013Z,40.9,kn-eval-s4d-closed-ws,socket state,3
+2026-11-04T05:19:04.240Z,,kn-u1-cli,status,Successful
+2026-11-04T05:19:04.241Z,,kn-u1-cli,status,Failed
+2026-11-04T05:20:13.466Z,,kn-eval-l3-job-answered,status,Running: just now
+2026-11-04T05:20:13.468Z,,kn-u1-cli,status,Successful
+2026-11-04T05:20:13.468Z,,kn-u1-cli,status,Failed
+2026-11-04T05:21:23.370Z,,kn-u1-cli,status,Successful
+2026-11-04T05:21:23.373Z,,kn-u1-cli,status,Failed
+2026-11-04T05:22:33.004Z,,kn-u1-cli,status,Successful
+2026-11-04T05:22:33.008Z,,kn-u1-cli,status,Failed
+2026-11-04T05:23:42.288Z,,kn-u2-new,status,Interactive Session with GPU T4 x2 Cancelling...
+2026-11-04T05:23:42.289Z,,kn-u1-cli,status,Successful
+2026-11-04T05:23:42.290Z,,kn-u1-cli,status,Failed
+2026-11-04T05:23:43.267Z,47.3,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:23:46.406Z,47.4,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:23:46.407Z,46.8,kn-eval-s4d-closed-ws,socket state,3
+2026-11-04T05:24:55.635Z,,kn-u2-new,status,Cancelled
+2026-11-04T05:24:55.636Z,,kn-u1-cli,status,Successful
+2026-11-04T05:24:55.636Z,,kn-u1-cli,status,Failed
+2026-11-04T05:26:04.885Z,,kn-u1-cli,status,Successful
+2026-11-04T05:26:04.886Z,,kn-u1-cli,status,Failed
+2026-11-04T05:27:14.350Z,,kn-u1-cli,status,Successful
+2026-11-04T05:27:14.351Z,,kn-u1-cli,status,Failed
+2026-11-04T05:29:17.248Z,52.9,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:29:20.392Z,53.0,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:29:20.393Z,52.3,kn-eval-s4d-closed-ws,socket state,3
+2026-11-04T05:34:26.898Z,58.1,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:34:30.373Z,58.1,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:34:30.374Z,57.5,kn-eval-s4d-closed-ws,socket state,3
+2026-11-04T05:39:36.880Z,63.2,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:39:39.944Z,63.3,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:39:39.945Z,62.7,kn-eval-s4d-closed-ws,socket state,3
+2026-11-04T05:44:46.702Z,68.4,kn-eval-s4c-closed-rest,rest poll,200 idle/conn0
+2026-11-04T05:44:49.725Z,68.4,kn-eval-s4c-closed-rest,job via sidecar,JOB FINISHED
+2026-11-04T05:44:49.726Z,67.8,kn-eval-s4d-closed-ws,socket state,3

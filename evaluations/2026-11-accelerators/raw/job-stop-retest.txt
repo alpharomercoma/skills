@@ -1,0 +1,14 @@
+06:40:35
+== A: ordinary job, stopped by SIGTERM
+{ "started": true, "name": "stop-a", "pid": 255, "log": "/kaggle/working/stop-a.log" } 
+{ "stopped": true, "name": "stop-a", "stoppedBy": "SIGTERM", "exitCode": null }  [exit 0]
+{ "name": "stop-a", "exists": true, "running": false, "pid": 255, "exitCode": null, "stoppedBy": "SIGTERM", "lostWithoutExitCode": false, "elapsedSeconds": 11, "log": "/kaggle/working/stop-a
+
+== B: ignores SIGTERM, needs SIGKILL
+{ "started": true, "name": "stop-b", "pid": 311, "log": "/kaggle/working/stop-b.log" } 
+{ "stopped": true, "name": "stop-b", "stoppedBy": "SIGKILL", "exitCode": null }  [exit 0]
+0  processes left
+== C: finished with its own exit code 7, then stop
+{ "started": true, "name": "stop-c", "pid": 372, "log": "/kaggle/working/stop-c.log" } 
+{ "stopped": false, "name": "stop-c", "exists": true, "running": false, "pid": 372, "exitCode": 7, "stoppedBy": null, "lostWithoutExitCode": false, "elapsedSeconds": 8, "
+ [exit 0]

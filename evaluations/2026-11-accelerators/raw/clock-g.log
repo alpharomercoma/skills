@@ -1,0 +1,5 @@
+06:47:17 kn-eval-clock-g-command-at-20 0.00 T: job started {"started":true,"name":"long","pid":137,"log":"/kaggle/working/long.log"}
+06:48:18 kn-eval-clock-g-command-at-20 1.00 tab closed 
+06:48:21 kn-eval-clock-g-command-at-20 1.06 status running
+07:07:23 kn-eval-clock-g-command-at-20 20.10 the one command beat 1200
+07:48:34 kn-eval-clock-g-command-at-20 61.27 status cancelled

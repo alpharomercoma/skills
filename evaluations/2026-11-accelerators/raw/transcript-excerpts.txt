@@ -1,0 +1,176 @@
+# Printed in the session transcript and not saved at the time. Copied here so they can be checked. Each is a slice of one tool result.
+
+===== sessions-stop retest: 1 tool result(s) in the session transcript
+--- result received 2026-11-04T05:50:06.020Z
+test sessions-stop by title on the closed-tab session
+[('kn-eval-s4c-closed-rest', 'running')]
+{"stopped":"kn-eval-s4c-closed-rest"} exit=0 took 8s
+ERROR: No live interactive session has the exact title "no-such-title". See: sessions
+missing-title exit=1
+ERROR: No live interactive session has the exact title "kn-eval-s2-idle-closed". See: sessions
+finished-session exit=1
+live now [('kn-eval-l3-job-answered', 'running'), ('kn-eval-l4-prompt-cancel', 'running'), ('kn-eval-l2-job-unanswered', 'running'), ('kn-eval-s5-foreground', 'running'), ('kn-eval-tpu', 'queued')]
+05:49:05 start {"started":true,"seconds":21,"kernel":{"name":"Python 3","status":"idle","connected":true}}
+05:49:14 sampler {"started":true,"name":"sampler
+
+===== live and cancelled list at about 06:00: 1 tool result(s) in the session transcript
+--- result received 2026-11-04T05:58:57.576Z
+un-tpu2.mjs'; s=open(p).read()\ns=s.replace(\"const page = k.openEditors(ctx).find((p) => p.url().includes(`/${SLUG}/edit`));\",\"const page = await k.notebookPage(ctx, `
+05:29:31 USE Monitor {"description": "long-run prompts and session ends, sidecar keep-alive outcome, TPU start", "timeout_ms": 1800000, "command": "cd ~/skills/evaluations/2026-11-accelerators; tail -n 0 -F raw/closed-tab.csv raw/long-runs.csv raw/tpu.txt 2>/dev/null | grep --line
+---
+kn-eval-l3-job-answered running 40 minutes
+kn-eval-l4-prompt-cancel cancelled None
+kn-eval-l2-job-unanswered cancelled None
+kn-eval-s4d-closed-ws cancelled None
+kn-eval-s4c-closed-rest cancelled None
+kn-eval-s5-foreground running an hour
+kn-eval-s4b-closed cancelled None
+39471 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framewor
+39482 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framewor
+Wed  4 Nov 13:17:22 2026
+
+===== live list at about 05:58: 1 tool result(s) in the session transcript
+--- result received 2026-11-04T05:58:29.211Z
+nswered,state at 0.0 min,running|prompt=false
+2026-11-04T05:27:57.699Z,kn-eval-l4-prompt-cancel,state at 10.1 min,|prompt=false
+2026-11-04T05:28:01.402Z,kn-eval-l2-job-unanswered,state at 13.1 min,|prompt=false
+2026-11-04T05:28:08.944Z,kn-eval-s5-foreground,state at 8.8 min,|prompt=false
+2026-11-04T05:28:08.946Z,kn-eval-l3-job-answered,state at 8.1 min,|prompt=false
+----
+kn-eval-a9-ui running a minute
+kn-eval-a9-cli running 2 minutes
+kn-eval-gpu running 8 minutes
+kn-eval-cpu2 running 10 minutes
+kn-eval-l3-job-answered running 39 minutes
+kn-eval-s5-foreground running an hour
+kn-eval-tpu queued None
+
+===== 40 min job beats, S3a and S3b: 1 tool result(s) in the session transcript
+--- result received 2026-11-04T06:16:03.515Z
+tatus(base, name, { lines: lines ?? (action === 'logs' ? 40 : 5) });
+364-        if (!r.exists) fail(`No job named "${name}". See: job list`);
+365-        if (action === 'logs') console.log(scrub(r.logTail));
+366-        else print(r);
+367-        return 0;
+368-      }
+369-      if (action === 'stop') {
+370-        if (!name) fail('Use: job stop <name>');
+371-        print(await k.jobStop(base, name));
+372-        return 0;
+373-      }
+reversals [('05:10:46', 1.26, '05:11:18', 1.13)]
+points 254 max gap 39.0 median 31.0
+04:02 [('04:02:41', 0.08), ('04:03:14', 0.08), ('04:03:47', 0.09), ('04:04:19', 0.1), ('04:04:51', 0.11), ('04:05:23', 0.11), ('04:05:54', 0.12), ('04:06:26', 0.13), ('04:06:57', 0.14), ('04:07:28', 0.15), ('04:08:00', 0.16), ('04:08:32', 0.17)]
+05:10 [('05:10:14', 1.24), ('05:10:46', 1.26), ('05:11:18', 1.13), ('05:11:50', 1.13), ('05:12:22', 1.13), ('05:12:55', 1.15), ('05:13:26', 1.17), ('05:13:57', 1.19)]
+2026-11-04T04:20:27Z,before-stop
+2026-11-04T04:20:29Z,stopped
+
+===== S3a and S3b at the end of their 40 min jobs
+--- result received 2026-11-04T04:28:46.046Z
+syntax-ok
+added 1 package in 371ms
+Session    start [--timeout S] | stop | restart | sessions | sessions-stop <exact title>
+Monitor    resources | quota | monitor start|report|stop
+Cells      push <file.py|file.ipynb> | cells | append <file|-> [--markdown]
+           set-cell <i> <file|-> | delete-cell <i>
+Run        run [--wait] [--timeout S] | run-cell <i> [--wait] [--timeout S]
+04:28:45
+=== A8
+NvidiaTeslaT4    push_exit 0 secs  102 "KernelWorkerStatus.COMPLETE"            hw: 2 Tesla T4; 15360 MiB id 1
+NvidiaL4         push_exit 0 secs   88 "KernelWorkerStatus.COMPLETE"            hw: 2 Tesla T4; 15360 MiB id 1
+NvidiaL4X1       push_exit 0 secs   99 "KernelWorkerStatus.COMPLETE"            hw: 2 Tesla T4; 15360 MiB id 1
+0
+04:28:10 NvidiaH100 push: Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/alpharomercoma/kn-eval-cli-nvidiah100 
+04:28:10 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.QUEUED"
+04:28:26 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+04:28:42 NvidiaH100 status: alpharomercoma/kn-eval-cli-nvidiah100 has status "KernelWorkerStatus.RUNNING"
+=== TPU
+04:20:39 accel {"changed":true,"accelerator":"TPU v5e-8","hoursRemaining":20,"session":"off"}
+04:21:13 pill +3s Draft Session Starting …
+=== lifetime
+2026-11-04T03:47:22.410Z,kn-eval-s1-idle-open,running,Draft Session (8m) HDD CPU RAM
+2026-11-04T03:47:22.413Z,kn-eval-s3a-detached-no
+--- result received 2026-11-04T04:29:20.825Z
+04:29:00
+=== new sessions command
+kn-eval-cli-nvidiah100           GPU T4 x2    a minute
+kn-eval-cli-nvidial4x1           GPU T4 x2    None
+kn-eval-cli-nvidial4             GPU T4 x2    None
+kn-eval-cli-nvidiateslat4        GPU T4 x2    None
+kn-eval-cli-nvidiateslat4        GPU T4 x2    None
+kn-eval-tpu                      TPU v5e-8    None
+kn-eval-gpu                      GPU T4 x2    None
+kn-eval-s4-detached-closed       none         None
+kn-eval-s3b-detached-poll        none         an hour
+kn-eval-s3a-detached-nopoll      none         an hour
+kn-eval-s2-idle-closed           none         None
+kn-eval-s1-idle-open             none         an hour
+--- s3a-detached-nopoll
+kaggle-notebooks CLI. --url <notebook url> picks the notebook, and is required for
+any command that changes something. If that notebook's tab is closed, --url opens it.
+
+Setup      doctor | tabs | selfcheck | map-ui | screenshot <out.png> | close-tab
+Notebook   new [--title T] | status | rename <title> | visibility
+           save-version [--name N] [--quick] | delete --confirm <exact title>
+Settings   accel none|t4x2|tpu [--force] | internet on|off | add-input <kaggle url>
+Session    start [--timeout S] | stop | restart | resources | quota
+Cells      push <file.py|file.ipynb> | cells | append <file|-> [--markdown]
+           set-cell <i> <file|-> | delete-cell <i>
+Run        run [--wait] [--timeout S] | run-cell <i> [--wait] [--timeout S]
+           wait [--timeout S] | interrupt | outputs [--cell i] [--m
+--- result received 2026-11-04T04:29:48.895Z
+this notebook                  menu | Skip to | content | Create | Home | Competitions | Benchmarks | Arenas | Game Arena | Data Hub | More | auto_awesome_motion | 4 | View Active Events | ​ | Draft sa
+kn-eval-cli-nvidiah100         open_in_new | kn-eval-cli-nvidiah100 | Version #1 with GPU T4 x2 | Successful | 2 minutes | more_horiz
+kn-eval-cli-nvidial4x1         open_in_new | kn-eval-cli-nvidial4x1 | Version #1 with GPU T4 x2 | Successful | 4 minutes | more_horiz
+kn-eval-cli-nvidial4           open_in_new | kn-eval-cli-nvidial4 | Version #1 with GPU T4 x2 | Successful | 5 minutes | more_horiz
+kn-eval-cli-nvidiateslat4      open_in_new | kn-eval-cli-nvidiateslat4 | Version #2 with GPU T4 x2 | Successful | 7 minutes | more_horiz
+kn-eval-cli-nvidiateslat4      open_in_new | kn-eval-cli-nvidiateslat4 | Version #1 with GPU T4 x2 | Successful | 9 minutes | more_horiz
+kn-eval-tpu                    kn-eval-tpu | Interactive Session with TPU v5e-8 | Queued | 9 minutes | more_horiz
+kn-eval-gpu                    kn-eval-gpu | Interactive Session with GPU T4 x2 | Cancelled | 27 minutes | more_horiz
+kn-eval-s4-detached-closed     kn-eval-s4-detached-closed | Interactive Session | Cancelled | an hour | more_horiz
+kn-eval-s3b-detached-poll      kn-eval-s3b-detached-poll | Interactive Session | Running: an hour | an hour | more_horiz
+kn-eval-s3a-detached-nopoll    kn-eval-s3a-detached-nopoll | Interactive Session | Running: an hour | an hour | more_horiz
+kn-eval-s2-idle-closed         kn
+
+===== Start of S1, S3a and S3b
+--- result received 2026-11-04T03:46:41.557Z
+1740dcc1f5b2b724f04cb73f54df250ae20b277767616767bb103a665acb7b78  PLAN.md
+2026-11-04T03:38:12Z
+start-of-evaluation 0.08h 0.00h
+=== concurrency probe: CPU sessions, one at a time, until refused
+"url":"https://www.kaggle.com/code/alpharomercoma/kn-eval-s1-idle-open/edit"
+"changed":false,"accelerator":"None"
+{"started":true,"seconds":23,"kernel":{"name":"Python3","status":"connecting","connected":true}} [s1-idle-open start exit=0 in 26s] 03:38:59
+"url":"https://www.kaggle.com/code/alpharomercoma/kn-eval-s2-idle-closed/edit"
+"changed":false,"accelerator":"None"
+{"started":true,"seconds":21,"kernel":{"name":"Python3","status":"connecting","connected":true}} [s2-idle-closed start exit=0 in 24s] 03:39:40
+"url":"https://www.kaggle.com/code/alpharomercoma/kn-eval-s3a-detached-nopoll/edit"
+"changed":false,"accelerator":"None"
+{"started":true,"seconds":69,"kernel":{"name":"Python3","status":"connecting","connected":true}} [s3a-detached-nopoll start exit=0 in 71s] 03:41:08
+"url":"https://www.kaggle.com/code/alpharomercoma/kn-eval-s3b-detached-poll/edit"
+"changed":false,"accelerator":"None"
+{"started":true,"seconds":21,"kernel":{"name":"Python3","status":"connecting","connected":true}} [s3b-detached-poll start exit=0 in 22s] 03:41:47
+"url":"https://www.kaggle.com/code/alpharomercoma/kn-eval-s4-detached-closed/edit"
+"changed":false,"accelerator":"None"
+{"started":true,"seconds":25,"kernel":{
+--- result received 2026-11-04T03:47:24.381Z
+=== what the 6th session attempt shows
+pill: Draft Session off (run a cell to start)
+dialogs: ["CPU Session cap reached Maximum interactive CPU session count of 5 reached. Stop one of your other CPU notebook sessions to continue editing. Cancel Manage active sessions"]
+alerts: ["An error occurred starting the worker."]
+matching text: ["Draft Session","Session is starting...","An error occurred starting the worker.","Maximum interactive CPU session count of 5 reached.","Error: Maximum interactive CPU session count of 5 reached.","CPU Session cap reached","Maximum interactive CPU session count of 5 reached. Stop one of your other CPU notebook sessions to continue editing.","Manage active sessions"]
+=== start detached jobs and record start times
+"verified":truepid=109 s3a-detached-nopoll job_started=03:47:13
+"verified":truepid=109 s3b-detached-poll job_started=03:47:16
+"verified":truepid=109 s4-detached-closed job_started=03:47:19
+{"closed":true} s2 closed=03:47:20
+{"closed":true} s4 closed=03:47:21
+[
+  "https://www.kaggle.com/code/alpharomercoma/kn-eval-s5-foreground/edit",
+  "https://www.kaggle.com/code/alpharomercoma/kn-eval-s1-idle-open/edit",
+  "https://www.kaggle.com/code/alpharomercoma/kn-eval-s3b-detached-poll/edit",
+  "https://www.kaggle.com/code/alpharomercoma/kn-eval-s3a-detached-nopoll/edit"
+]
+watcher started 03:47:22
+exit 0
+   32652 /private/tmp/claude-501/-Users-alph

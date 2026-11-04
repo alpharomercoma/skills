@@ -1,0 +1,36 @@
+08:20:58
+== final end-to-end on the finished code
+new ok
+{ "started": true, "seconds": 23, "kernel": { "name": "Python 3", "status": "idle", "conne
+ [exit 0]
+selfcheck exit 0: {'ok': True, 'failed': 0, 'checked': 32, 'notChecked': 2}
+== job leaves work in the background, wrapper exits 0
+{ "started": true, "name": "bg", "pid": 143, "log": "/kaggle/working/b
+
+{ "name": "bg", "exists": true, "running": true, "pid": 143, "exitCode": 0, "stoppedBy": n
+
+{ "stopped": true, "name": "bg", "stoppedBy": "SIGTERM", "exitCode": 0 }  [exit 0]
+{ "name": "bg", "exists": true, "running": false, "pid": 143, "exitCode": 0, "stoppedBy": "SIGTERM", "lostWith
+
+0  left
+== normal job, exit code
+{ "name": "n1", "exists": true, "running": false, "pid": 239, "exitCode": 4, "stoppedBy": null, "lostWith
+
+== cell, wait, monitor, resources, files
+{ "started": true, "name": "kn-monitor", "pid": 31
+
+run with an error cell: exit 1 (expect 1)
+{ "session": "running", "capturedAt": "2026-11-04T08:23:55.522Z", "accelerator": "No Accelerator", "uptime": "2m", "sess
+
+{ "samples": 22, "seconds": 42, "lastSampleAgeSeconds": 1.8, "gpus": [], "cpu": { "meanPercentOfAllC
+
+{ "stopped": true, "name": "kn-monitor", "stoppedBy": "SIGTE
+
+{ "path": "/tmp/p.txt", "bytes": 8, "verified": true } 
+{ "path": "/var/folders/4y/4hgfgs110rg9f95s3w5y4r240000gn/T/tmp.QcTkqI
+
+round trip identical
+it", "title": "kn-eval-final", "accelerator": "None", "internet": true, "session": "running", "uptime": "3m", "kernel": "idle", "busy": false, "cells": 2, "versi
+
+{ "stopped": "kn-eval-final" }  [exit 0]
+{ "session": "off" } 

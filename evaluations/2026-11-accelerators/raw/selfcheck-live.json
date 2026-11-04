@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "failed": [],
+  "checked": 32,
+  "notChecked": [
+    "official kaggle CLI, used by quota",
+    "save, delete, rename and add-input, which change things"
+  ]
+}
