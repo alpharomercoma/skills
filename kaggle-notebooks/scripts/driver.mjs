@@ -7,11 +7,11 @@
 //   - JupyterLab in an iframe: cells and kernel. Reached through window.jupyterapp.
 
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { chromium } from 'playwright-core';
+import * as jupyter from './jupyter.mjs';
 
 const PORT = process.env.KAGGLE_CDP_PORT || '9333';
 export const CDP_URL = `http://127.0.0.1:${PORT}`;
@@ -32,6 +32,25 @@ export class KaggleError extends Error {
 }
 
 const cleanUrl = (u) => u.split('?')[0];
+
+/**
+ * Session urls hold tokens, and a command such as ps can print the Jupyter server's own token,
+ * so nothing that could contain one reaches the output.
+ */
+/** Shorten output for printing. Scrub first: cutting first could remove the word that marks a credential. */
+export const clipOutput = (text, max = 4000) => {
+  const clean = scrub(text);
+  return clean.length > max ? `…(${clean.length - max} earlier chars cut)…\n${clean.slice(-max)}` : clean;
+};
+
+// Applied in Node and inside the page, so the rules live in one place.
+const SCRUB_RULES = [
+  ['\\beyJ[\\w-]{20,}(\\.[\\w.-]+)?', 'g', '<token>'],
+  ['\\b(https?|wss?):\\/\\/kkb[^\\s"\']*', 'g', '<session url>'],
+  ['((?:token|TOKEN)[=:\\s"\']+)[A-Za-z0-9_\\-.]{16,}', 'g', '$1<token>'],
+];
+
+export const scrub = (s) => SCRUB_RULES.reduce((text, [source, flags, to]) => text.replace(new RegExp(source, flags), to), String(s));
 
 /* ------------------------------------------------------------------ browser */
 
@@ -138,7 +157,8 @@ export async function dismissBanners(page) {
  * Clear anything that blocks the toolbar, and confirm it is gone. An open menu or dialog
  * marks the rest of the page aria-hidden, which makes role lookups find nothing, and one
  * Escape closes only a submenu. Popovers ignore Escape and can overlap one another, so
- * click their Close buttons in the DOM. A stray confirm dialog is cancelled, not accepted.
+ * click their Close buttons in the DOM. A stray confirm dialog is cancelled, not accepted,
+ * with one exception: on Kaggle's idle prompt, Cancel is not the safe choice.
  */
 async function closeOverlays(page) {
   for (let i = 0; i < 6 && (await menuRows(page)).length; i++) {
@@ -150,11 +170,33 @@ async function closeOverlays(page) {
     document.querySelectorAll('button[aria-label="Close"]').forEach((b) => visible(b) && b.click());
     document.querySelectorAll('[role="dialog"]').forEach((d) => {
       if (!visible(d)) return;
-      const cancel = [...d.querySelectorAll('button')].find((b) => (b.innerText || '').trim() === 'Cancel');
-      if (cancel) cancel.click();
+      const buttons = [...d.querySelectorAll('button')];
+      const named = (name) => buttons.find((b) => (b.innerText || '').trim() === name);
+      // "Are you still there?": any command here means the tab is in use, so keep the session.
+      if (/Are you still there/i.test(d.innerText || '')) named('Continue editing')?.click();
+      else named('Cancel')?.click();
     });
   });
   await sleep(300);
+}
+
+/**
+ * Answer Kaggle's idle prompt if it is showing, and report whether it was. It appears after 40
+ * minutes with no change to the notebook, and an unanswered session is ended later.
+ */
+export async function answerIdlePrompt(page) {
+  return page.evaluate(() => {
+    for (const d of document.querySelectorAll('[role="dialog"]')) {
+      if (d.getBoundingClientRect().width > 0 && /Are you still there/i.test(d.innerText || '')) {
+        const b = [...d.querySelectorAll('button')].find((x) => (x.innerText || '').trim() === 'Continue editing');
+        if (b) {
+          b.click();
+          return true;
+        }
+      }
+    }
+    return false;
+  });
 }
 
 export async function visibleDialogs(page) {
@@ -227,10 +269,16 @@ async function openMenu(page, name) {
 
 const menuItem = (page, re) => page.getByRole('menuitem', { name: re }).first();
 
+/** The submenu opens on hover, and a hover sometimes doesn't take, so check and retry. */
 async function openAcceleratorSubmenu(page) {
-  await openMenu(page, 'Settings');
-  await menuItem(page, /Accelerator/i).hover();
-  await page.getByRole('menuitem', { name: 'None', exact: true }).first().waitFor({ state: 'visible', timeout: 5000 });
+  const none = page.getByRole('menuitem', { name: 'None', exact: true }).first();
+  for (let attempt = 0; attempt < 3; attempt++) {
+    await openMenu(page, 'Settings');
+    await menuItem(page, /Accelerator/i).hover();
+    if (await none.waitFor({ state: 'visible', timeout: 2500 }).then(() => true, () => false)) return;
+    await closeOverlays(page);
+  }
+  throw new KaggleError(`Could not open Settings > Accelerator. Dialogs: ${JSON.stringify(await visibleDialogs(page))}. Run: selfcheck`);
 }
 
 /* ---------------------------------------------------------- session + kernel */
@@ -256,10 +304,59 @@ export async function kernelStatus(page) {
   });
 }
 
+/** Kaggle's session-cap dialog, measured at 5 interactive CPU sessions and 1 GPU session. */
+async function assertNotCapped(page) {
+  const capped = (await visibleDialogs(page)).find((d) => /Session cap reached/i.test(d));
+  if (capped) {
+    await closeOverlays(page);
+    throw new KaggleError(`${capped.replace(/\s*Cancel Manage active sessions\s*$/, '')} Find them with: sessions`);
+  }
+}
+
+/** The kernel's true state from the session's own server, or null if that can't be reached. */
+export async function serverKernel(page) {
+  const frame = await jupyterFrame(page, { timeoutMs: 20000 });
+  const id = await frame.evaluate(() => {
+    const app = window.jupyterapp;
+    const panel = [app.shell.currentWidget, ...app.shell.widgets('main')].find((w) => w?.content?.model?.sharedModel);
+    return panel?.sessionContext?.session?.kernel?.id ?? null;
+  });
+  return jupyter.notebookKernel(await jupyter.serverBase(frame), id).catch(() => null);
+}
+
+/** True when the session's server reports a kernel able to run code. A queued session has none. */
+export const serverSaysLive = async (page) => ['idle', 'busy'].includes((await serverKernel(page).catch(() => null))?.state);
+
+/** A warning when weekly GPU quota is nearly gone, given the `quota` table's remaining value such as "0.40h". */
+export const lowQuotaWarning = (left) =>
+  parseFloat(left) < 0.5 ? `Only ${left} of weekly GPU quota left, at about 1 hour per session hour.` : null;
+
+/** How many times the session's memory limit has killed a process, or null if unreadable. */
+export async function oomKills(page) {
+  const r = await sh(page, "grep -E '^oom_kill ' /sys/fs/cgroup/memory.events | cut -d' ' -f2", { timeoutMs: 20000 }).catch(() => null);
+  const n = Number(r?.stdout?.trim());
+  return r && r.stdout.trim() !== '' && Number.isFinite(n) ? n : null;
+}
+
+/** Base url of the session's Jupyter server. It holds a token, so never print it. */
+export async function sessionServer(page) {
+  // Polling a job on this notebook is use of it, so an unanswered prompt shouldn't end the session.
+  await answerIdlePrompt(page);
+  const r = await settledRunState(page);
+  if (!r.connected) throw new KaggleError('No live session. Run: start');
+  return jupyter.serverBase(await jupyterFrame(page));
+}
+
 async function waitForKernel(page, deadline) {
   for (;;) {
+    await assertNotCapped(page);
     const k = await kernelStatus(page);
-    if (k.connected && k.status !== 'unknown') return k;
+    if (k.connected && (k.status === 'idle' || k.status === 'busy')) return k;
+    if (k.connected) {
+      // A tab can't get an answer from a busy kernel, so ask the server. Only idle and busy are usable.
+      const truth = await serverKernel(page);
+      if (truth && (truth.state === 'idle' || truth.state === 'busy')) return { ...k, status: truth.state };
+    }
     if (Date.now() > deadline) {
       const s = await sessionState(page);
       throw new KaggleError(`Session did not come up in time. Pill: "${s.raw}". Dialogs: ${JSON.stringify(await visibleDialogs(page))}`, 124);
@@ -272,11 +369,14 @@ async function waitForKernel(page, deadline) {
 export async function startSession(page, { timeoutMs = 300000 } = {}) {
   const t0 = Date.now();
   const before = await settledRunState(page);
-  if (before.connected) return { started: false, alreadyRunning: true, kernel: before.kernel, busy: before.busy };
+  if (before.connected && (before.kernel === 'idle' || before.kernel === 'busy')) return { started: false, alreadyRunning: true, kernel: before.kernel, busy: before.busy };
   const s = await sessionState(page);
   if (s.state === 'off') {
     await openMenu(page, 'Run');
-    await menuItem(page, /Start session/i).click({ timeout: 5000 });
+    // A click can land while the page is too busy to report back, so let the wait below decide.
+    await menuItem(page, /Start session/i).click({ timeout: 5000 }).catch((e) => {
+      if (!/Timeout/.test(e.message)) throw e;
+    });
   }
   const kernel = await waitForKernel(page, t0 + timeoutMs);
   return { started: true, seconds: Math.round((Date.now() - t0) / 1000), kernel };
@@ -576,7 +676,7 @@ export async function deleteCell(page, index) {
  * run as finished.
  */
 export async function runState(page) {
-  return inNotebook(page, (panel) => {
+  return inNotebook(page, (panel, rules) => {
     const nb = panel.content;
     const ctx = panel.sessionContext;
     const cells = nb.model.sharedModel.cells.map((c) => c.toJSON());
@@ -589,7 +689,8 @@ export async function runState(page) {
     if (pending.length) {
       const outs = cells[pending[0]].outputs || [];
       const last = outs.filter((o) => o.output_type === 'stream').pop();
-      if (last) tail = [].concat(last.text).join('').slice(-400);
+      // Scrub the whole stream here, before cutting, so a cut can't remove the word that marks a credential.
+      if (last) tail = rules.reduce((t, [source, flags, to]) => t.replace(new RegExp(source, flags), to), [].concat(last.text).join('')).slice(-400);
     }
     const status = ctx?.kernelDisplayStatus ?? null;
     const connected = !!ctx?.session?.kernel;
@@ -607,23 +708,29 @@ export async function runState(page) {
       tail,
       executed: cells.filter((c) => c.execution_count != null).length,
     };
-  });
+  }, SCRUB_RULES);
 }
 
 const BUSY_MESSAGE =
-  'The kernel is busy or has not answered since this tab connected, so this would wait until any running job ends. Use: resources. To watch it end, use: wait. To stop it, use: interrupt. With sh or exec, --queue runs it afterwards.';
+  'The notebook kernel is busy, so this would wait until the running cell ends. For shell commands use: sh. For readings use: resources or monitor report. To watch it end, use: wait. To stop it, use: interrupt. With exec, --queue runs it afterwards.';
 
 /**
  * Right after a tab opens, the kernel takes a few seconds to connect and the pill can read
  * off before Kaggle has finished loading. Wait for a settled answer, so that a session
  * still reconnecting is not reported as having no session. Trust "off" only once the
- * draft label shows that Kaggle has loaded the notebook.
+ * draft label shows that Kaggle has loaded the notebook. When the tab has connected but
+ * can't tell the kernel's state, the server's answer is the true one.
  */
-async function settledRunState(page, timeoutMs = 45000) {
+export async function settledRunState(page, timeoutMs = 45000) {
   const deadline = Date.now() + timeoutMs;
+  const UNSETTLED = new Set(['unknown', 'connecting', 'starting']);
   for (;;) {
     const r = await runState(page);
-    if (r.connected && r.kernel !== 'unknown') return r;
+    if (r.connected && !UNSETTLED.has(r.kernel)) return r;
+    if (r.connected) {
+      const truth = await serverKernel(page);
+      if (truth && !UNSETTLED.has(truth.state)) return { ...r, kernel: truth.state, busy: r.pending.length > 0 || truth.state === 'busy' };
+    }
     if (!r.connected && (await sessionState(page)).state === 'off' && (await waitDraftLabel(page, 0))) return r;
     if (Date.now() > deadline) return r;
     await sleep(1000);
@@ -641,6 +748,7 @@ export async function runAll(page, { startTimeoutMs = 300000 } = {}) {
   await page.getByRole('button', { name: /^Run All$/ }).first().click({ timeout: 20000 });
   const deadline = Date.now() + startTimeoutMs;
   while (Date.now() < deadline) {
+    await assertNotCapped(page);
     const r = await runState(page);
     if (r.busy || r.executed > 0 || r.errors.length) return { started: true };
     await sleep(1000);
@@ -691,7 +799,10 @@ export async function restartKernel(page, { timeoutMs = 120000 } = {}) {
  * Block until the run ends. done is true only when nothing is pending and the kernel
  * has stayed idle across two polls. Returns sessionLost if the kernel stays gone across
  * three polls, because a reconnecting tab can read off for a moment. Returns timedOut if
- * the deadline passes while the run is still going.
+ * the deadline passes while the run is still going. Returns kernelRestarted if a cell seen
+ * running ended with neither an execution count nor an error, which only a lost kernel does.
+ * Measured when RAM runs out: it dies and comes back in about 30 s with a new process, no
+ * variables, and no error in any cell. A reconnect alone doesn't count: its cell keeps its count.
  */
 export async function waitForRun(page, { timeoutMs = 12 * 3600 * 1000, pollMs = 5000, onTick } = {}) {
   const deadline = Date.now() + timeoutMs;
@@ -699,6 +810,7 @@ export async function waitForRun(page, { timeoutMs = 12 * 3600 * 1000, pollMs = 
   let idlePolls = 0;
   let offPolls = 0;
   let missedSnapshots = 0;
+  const seenRunning = new Set();
   const LOST = 'Lost the editor while waiting: the tab closed or reloaded. Any job may still be running, and its later output is lost. Check files on disk with: sh';
   for (;;) {
     if (page.isClosed()) throw new KaggleError(LOST, 3);
@@ -709,12 +821,21 @@ export async function waitForRun(page, { timeoutMs = 12 * 3600 * 1000, pollMs = 
         lastTail = r.tail;
         onTick(r);
       }
+      await answerIdlePrompt(page); // waiting on a run is use, and an unanswered prompt ends the session
       const session = (await sessionState(page)).state;
       if (session === 'crashed') throw new KaggleError(CRASH_MESSAGE, 3);
       offPolls = !r.connected && session === 'off' ? offPolls + 1 : 0;
       if (offPolls >= 3) return { done: false, sessionLost: true, ...r };
-      idlePolls = !r.busy && r.kernel === 'idle' ? idlePolls + 1 : 0;
-      if (idlePolls >= 2) return { done: true, errored: r.errors.length > 0, ...r };
+      r.pending.forEach((i) => seenRunning.add(i));
+      // A kernel running a job can't answer a reconnected tab, so ask its server.
+      let idleNow = !r.busy && r.kernel === 'idle';
+      if (r.connected && r.kernel === 'unknown') idleNow = (await serverKernel(page))?.state === 'idle';
+      idlePolls = idleNow ? idlePolls + 1 : 0;
+      if (idlePolls >= 2) {
+        // Cells after an error also stay unrun, so any error means this was not a lost kernel.
+        const kernelRestarted = r.errors.length === 0 && [...seenRunning].some((i) => r.notRun.includes(i));
+        return { done: true, errored: r.errors.length > 0, kernelRestarted, ...r };
+      }
     } else if (++missedSnapshots > 12) {
       throw new KaggleError(LOST, 3);
     }
@@ -751,13 +872,31 @@ export async function outputs(page) {
   );
 }
 
+/** Write every image a cell produced to a folder. Returns the file names. */
+export async function saveImages(page, dir) {
+  const images = await inNotebook(page, (panel) =>
+    panel.content.model.sharedModel.cells.flatMap((c, cell) =>
+      (c.toJSON().outputs || []).flatMap((o, out) => {
+        const png = o.data?.['image/png'];
+        return png ? [{ cell, out, data: [].concat(png).join('') }] : [];
+      })
+    )
+  );
+  mkdirSync(dir, { recursive: true });
+  return images.map(({ cell, out, data }) => {
+    const file = join(dir, `cell${cell}-output${out}.png`);
+    writeFileSync(file, Buffer.from(data, 'base64'));
+    return file;
+  });
+}
+
 /* ------------------------------------------------------- CLI through the kernel */
 
 /**
- * Run code in the live kernel without touching any cell or execution count. This is the
- * channel behind Kaggle's Console, and its output also appears there. Jupyter terminals
- * return 500 on Kaggle, so this is the only shell. Requests queue behind a busy kernel,
- * so refuse by default rather than appear to hang for the length of a training run.
+ * Run code in the notebook's own kernel, where its variables live, without touching any cell
+ * or execution count. This is the channel behind Kaggle's Console, and its output also appears
+ * there. Requests queue behind a busy kernel, so refuse by default rather than appear to hang
+ * for the length of a training run.
  */
 export async function exec(page, code, { timeoutMs = 120000, queue = false } = {}) {
   const r = await settledRunState(page);
@@ -786,53 +925,83 @@ export async function exec(page, code, { timeoutMs = 120000, queue = false } = {
   return res;
 }
 
-/** Run a bash script in the session. exitCode is parsed from the kernel's error. */
+/**
+ * Run a bash script in the session through a sidecar kernel, with cwd /kaggle/working. This
+ * doesn't wait for a running cell and can't change the notebook's variables.
+ */
 export async function sh(page, script, opts = {}) {
-  const r = await exec(page, `%%bash\n${script}`, opts);
-  let exitCode = r.status === 'ok' ? 0 : 1;
-  const m = r.error?.value?.match(/non-zero exit status (\d+)/);
-  if (m) exitCode = Number(m[1]);
-  return { ...r, exitCode };
+  return jupyter.shell(await sessionServer(page), script, opts);
 }
 
-/**
- * Copy a local file into the session. The content travels as base64, so nothing in the
- * file can be read as shell or Python, and the checksum confirms it arrived intact.
- */
-export async function putFile(page, localPath, remotePath, opts = {}) {
-  const bytes = readFileSync(localPath);
-  const target = JSON.stringify(remotePath);
-  const run = async (code) => {
-    const r = await exec(page, code, opts);
-    if (r.status !== 'ok') throw new KaggleError(`Copy failed: ${r.error?.name}: ${r.error?.value}`);
-    return r;
-  };
-  await run(`(lambda P: (P.parent.mkdir(parents=True, exist_ok=True), P.write_bytes(b'')))(__import__('pathlib').Path(${target}));None`);
-  const b64 = bytes.toString('base64');
-  const CHUNK = 512 * 1024; // a multiple of 4, so each chunk decodes alone
-  for (let i = 0; i < b64.length; i += CHUNK) {
-    await run(`(lambda f, d: (f.write(d), f.close()))(open(${target}, 'ab'), __import__('base64').b64decode('${b64.slice(i, i + CHUNK)}'));None`);
-  }
-  const check = await run(`print(__import__('hashlib').sha256(open(${target}, 'rb').read()).hexdigest())`);
-  const sha256 = createHash('sha256').update(bytes).digest('hex');
-  if (check.stdout.trim() !== sha256) throw new KaggleError(`Copy to ${remotePath} did not verify: the checksums differ.`);
-  return { path: remotePath, bytes: bytes.length, verified: true };
-}
+export { jobStart, jobStatus, jobStop, jobList, monitorStart, monitorStop, monitorReport, putFile, getFile } from './jupyter.mjs';
 
 /* ---------------------------------------------------------------- monitoring */
 
-function parseResources(text) {
-  const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
-  const out = { accelerator: lines[1] ?? null, sections: [] };
-  const LABEL = /^(Session|Disk|CPU|RAM|GPU( ?\d+)?|GPU Memory|GPU RAM|VRAM)$/i;
+const UNIT_MIB = { bytes: 1 / 2 ** 20, b: 1 / 2 ** 20, kib: 1 / 1024, mib: 1, gib: 1024, tib: 1024 ** 2 };
+
+function toMiB(text) {
+  const m = String(text ?? '').trim().match(/^([\d.]+)\s*([A-Za-z]+)$/);
+  const unit = m && UNIT_MIB[m[2].toLowerCase()];
+  return unit ? Math.round(Number(m[1]) * unit * 10) / 10 : null;
+}
+
+const toPercent = (text) => {
+  const m = String(text ?? '').trim().match(/^([\d.]+)%$/);
+  return m ? Number(m[1]) : null;
+};
+
+/**
+ * Turn the panel's text into values, one value per line as innerText gives it. Lines this
+ * doesn't recognise go into unrecognised rather than vanish, and missing goes non-empty if a
+ * value the panel should show isn't there, so an incomplete reading can't pass for a full one.
+ */
+export function parseResources(text) {
+  const lines = String(text ?? '').split('\n').map((l) => l.trim()).filter(Boolean);
+  const out = { accelerator: lines[1] ?? null, uptime: null, sessionLimit: null, cpuPercent: null, ram: null, disk: null, gpus: [], unrecognised: [], missing: [] };
+  const LABEL = /^(Session|Disk|CPU|RAM|GPU|GPU Memory)$/;
+  const used = new Set([0, 1]);
+  const limitAfter = (i) => (lines[i] && !LABEL.test(lines[i]) && /^(Max\s|[\d.]+\s*hours?)/i.test(lines[i]) ? lines[i].replace(/^Max\s+/i, '') : null);
   for (let i = 2; i < lines.length; i++) {
-    if (!LABEL.test(lines[i])) continue;
-    const next = lines[i + 1];
-    if (!next || LABEL.test(next)) continue; // a section heading such as "CPU" above "CPU"
-    const entry = { label: lines[i], value: next };
-    if (lines[i + 2] && !LABEL.test(lines[i + 2]) && /max|hours?/i.test(lines[i + 2])) entry.limit = lines[i + 2].replace(/^Max /, '');
-    out.sections.push(entry);
+    const label = lines[i];
+    if (!LABEL.test(label)) continue;
+    const value = lines[i + 1];
+    if (value === undefined || LABEL.test(value)) {
+      if (value === label) used.add(i); // a section heading, such as "CPU" above the "CPU" reading
+      continue;
+    }
+    used.add(i).add(i + 1);
+    const limit = limitAfter(i + 2);
+    if (limit) used.add(i + 2);
+    if (label === 'Session') {
+      out.uptime = value;
+      out.sessionLimit = limit;
+    } else if (label === 'Disk') out.disk = { usedMiB: toMiB(value), maxMiB: toMiB(limit) };
+    else if (label === 'RAM') out.ram = { usedMiB: toMiB(value), maxMiB: toMiB(limit) };
+    else if (label === 'CPU') out.cpuPercent = toPercent(value);
+    else if (label === 'GPU') out.gpus.push({ index: out.gpus.length, utilPercent: toPercent(value), memUsedMiB: null, memMaxMiB: null });
+    else if (label === 'GPU Memory') {
+      // Memory belongs to the GPU block directly above it. Anything else would mislabel a device.
+      const gpu = out.gpus[out.gpus.length - 1];
+      if (gpu && gpu.memUsedMiB === null) Object.assign(gpu, { memUsedMiB: toMiB(value), memMaxMiB: toMiB(limit) });
+      else out.unrecognised.push(`GPU Memory ${value}`);
+    }
   }
+  lines.forEach((l, i) => {
+    if (!used.has(i)) out.unrecognised.push(l);
+  });
+  if (out.uptime === null || !out.sessionLimit) out.missing.push('session');
+  if (out.cpuPercent === null) out.missing.push('cpu');
+  if (typeof out.ram?.usedMiB !== 'number' || !out.ram?.maxMiB) out.missing.push('ram');
+  if (typeof out.disk?.usedMiB !== 'number' || !out.disk?.maxMiB) out.missing.push('disk');
+  // "GPU T4 x2 On" says how many GPUs there should be, so a dropped block can't look complete.
+  if (/GPU/.test(out.accelerator ?? '')) {
+    const expected = Number(/\bx(\d+)\b/.exec(out.accelerator)?.[1] ?? 1);
+    if (out.gpus.length !== expected) out.missing.push(`gpu count: expected ${expected}, found ${out.gpus.length}`);
+  }
+  out.gpus.forEach((g) => {
+    if (g.utilPercent === null || g.memUsedMiB === null || !g.memMaxMiB) out.missing.push(`gpu ${g.index}`);
+  });
+  if (out.unrecognised.some((l) => /^GPU Memory/.test(l))) out.missing.push('gpu order: a memory line has no GPU to belong to');
   return out;
 }
 
@@ -841,8 +1010,11 @@ function parseResources(text) {
  * kernel, so it keeps working during training. It is empty for a few seconds after boot.
  */
 export async function resources(page, { timeoutMs = 45000 } = {}) {
-  const session = await sessionState(page);
-  if (session.state === 'off') return { session: 'off' };
+  // The pill can read off for a moment while a tab reconnects, so settle before believing it.
+  if ((await sessionState(page)).state === 'off') {
+    await settledRunState(page);
+    if ((await sessionState(page)).state === 'off') return { session: 'off' };
+  }
   await closeOverlays(page);
   const read = () =>
     page.evaluate(() => {
@@ -856,21 +1028,159 @@ export async function resources(page, { timeoutMs = 45000 } = {}) {
       return null;
     });
   const deadline = Date.now() + timeoutMs;
-  let text = null;
-  while (Date.now() < deadline && !text) {
-    await page.locator('button', { hasText: 'Draft Session' }).first().click({ timeout: 5000 });
-    await sleep(1500);
-    text = await read();
-    if (!text) {
-      await closeOverlays(page);
-      await sleep(3000);
+  let parsed = null;
+  while (Date.now() < deadline) {
+    // Measured: the first click after the panel's Close button doesn't open it, so click, look,
+    // and click again if it isn't there. A DOM click, because a tooltip can cover the pill.
+    const clickPill = () => page.evaluate(() => [...document.querySelectorAll('button')].find((b) => /Draft Session/.test(b.innerText || ''))?.click());
+    const openedAt = Date.now();
+    let lastClick = 0;
+    let seen = false;
+    while (Date.now() - openedAt < 2500) {
+      if (!seen && Date.now() - lastClick > 400) {
+        await clickPill();
+        lastClick = Date.now();
+      }
+      const text = await read();
+      if (text) {
+        seen = true;
+        parsed = parseResources(text);
+        if (!parsed.missing.length) break; // otherwise the values are still arriving
+      }
+      await sleep(100);
     }
+    await closeOverlays(page);
+    if (parsed && !parsed.missing.length) break;
+    await sleep(3000); // metrics take a few seconds to start after a session boots
   }
-  await closeOverlays(page);
-  if (!text) throw new KaggleError(`The resources panel never filled in. Pill: "${(await sessionState(page)).raw}"`, 124);
-  const parsed = parseResources(text);
-  if (!parsed.sections.length) throw new KaggleError(`Could not read the resources panel. Its layout may have changed. Run: selfcheck. Text: ${JSON.stringify(text.slice(0, 200))}`);
-  return { session: 'running', ...parsed };
+  if (!parsed) {
+    const pill = await sessionState(page);
+    if (pill.state === 'starting' && (await serverSaysLive(page))) {
+      throw new KaggleError('Kaggle shows no resource panel on this tab, because it reconnected to a session with a busy cell (the pill still says Starting). The session is live: read it with sh, or with monitor start and monitor report.');
+    }
+    throw new KaggleError(`The resources panel never filled in. Pill: "${pill.raw}"`, 124);
+  }
+  if (parsed.missing.length) {
+    throw new KaggleError(`The resources panel is missing: ${parsed.missing.join(', ')}. Don't treat this as a full reading. It may still be starting, or its layout may have changed. Run: selfcheck.`, 124);
+  }
+  const { missing, ...values } = parsed;
+  return { session: 'running', capturedAt: new Date().toISOString(), ...values };
+}
+
+/* ----------------------------------------------------------------- sessions */
+
+/** Open the panel listing every live session on the account, including ones with no open tab. */
+const EVENTS_BUTTON = 'button[aria-controls="active-events-panel"]';
+const EVENT_ROW_MORE = '#active-events-panel button[aria-label^="More options for "]';
+
+// A DOM click, because a tooltip can sit over the button and swallow a pointer click.
+const toggleActiveEvents = (page) => page.evaluate((sel) => document.querySelector(sel)?.click(), EVENTS_BUTTON);
+
+async function openActiveEvents(page) {
+  // No closeOverlays here: this tab may be another notebook's, and its dialogs aren't ours to answer.
+  const button = page.locator(EVENTS_BUTTON).first();
+  await button.waitFor({ state: 'attached', timeout: 10000 });
+  if ((await button.getAttribute('aria-expanded')) !== 'true') await toggleActiveEvents(page);
+  await page.locator(EVENT_ROW_MORE).first().waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
+}
+
+async function closeActiveEvents(page) {
+  const open = (await page.locator(EVENTS_BUTTON).first().getAttribute('aria-expanded').catch(() => null)) === 'true';
+  if (open) await toggleActiveEvents(page);
+  await sleep(300);
+}
+
+/** A page that shows Kaggle's side navigation, without disturbing any editor tab's menus. */
+// Account-wide panels get their own tab. A notebook's tab may be busy, or held by one of its dialogs.
+async function accountPage(ctx) {
+  const page = await ctx.newPage();
+  await page.goto('https://www.kaggle.com/code', { waitUntil: 'domcontentloaded', timeout: 60000 });
+  await sleep(1500);
+  return page;
+}
+
+const listRows = (page) =>
+  page.evaluate(
+    (sel) =>
+      [...document.querySelectorAll(sel)].map((b) => {
+        const title = b.getAttribute('aria-label').replace(/^More options for /, '');
+        let row = b;
+        while (row.parentElement && !(row.innerText || '').includes(title)) row = row.parentElement;
+        const lines = (row.innerText || '').split('\n').map((l) => l.trim()).filter(Boolean);
+        const kind = lines.find((l) => /^(Interactive Session|Version #)/i.test(l)) ?? null;
+        const state = lines.find((l) => /^(Running|Queued|Starting|Cancelled|Successful|Failed|Error|Stopped|Complete)/i.test(l)) ?? null;
+        return { title, kind, state };
+      }),
+    EVENT_ROW_MORE
+  );
+
+/**
+ * List every live session on the account, including ones whose tab is closed. A closed tab does
+ * not stop a session or its quota use, and Kaggle caps sessions, so these have to be findable.
+ */
+export async function listSessions(ctx, { all = false } = {}) {
+  const page = await accountPage(ctx);
+  try {
+    await dismissBanners(page);
+    await openActiveEvents(page);
+    const rows = await listRows(page);
+    await closeActiveEvents(page);
+    const list = rows.map((r) => ({
+      title: r.title,
+      type: /^Version/i.test(r.kind ?? '') ? 'version' : 'interactive',
+      accelerator: /with (.+)$/.exec(r.kind ?? '')?.[1] ?? 'none',
+      status: (r.state ?? 'unknown').split(':')[0].toLowerCase(),
+      running: /^Running:/i.test(r.state ?? '') ? r.state.replace(/^Running:\s*/i, '') : null,
+    }));
+    // The panel also lists finished runs. Only these still hold a slot or spend quota.
+    return all ? list : list.filter((r) => ['running', 'queued', 'starting'].includes(r.status));
+  } finally {
+    await page.close();
+  }
+}
+
+/** Stop a session by its exact title, with no need for its tab. */
+export async function stopSessionByTitle(ctx, title) {
+  const page = await accountPage(ctx);
+  try {
+    await dismissBanners(page);
+    await openActiveEvents(page);
+    // The panel also lists finished runs and versions, which can share a title with a live session.
+    // Choose and click in one step, by title. A position in the list could change between two steps,
+    // and the click would then stop a different notebook.
+    const matches = await page.evaluate(
+      ([sel, wanted]) => {
+        const live = [...document.querySelectorAll(sel)].filter((b) => {
+          if (b.getAttribute('aria-label') !== `More options for ${wanted}`) return false;
+          let row = b;
+          while (row.parentElement && !(row.innerText || '').includes(wanted)) row = row.parentElement;
+          const t = row.innerText || '';
+          return /Interactive Session/i.test(t) && /(^|\n)\s*(Running|Queued|Starting)/i.test(t);
+        });
+        if (live.length === 1) live[0].click();
+        return live.length;
+      },
+      [EVENT_ROW_MORE, title]
+    );
+    if (matches !== 1) {
+      await closeActiveEvents(page);
+      throw new KaggleError(matches ? `${matches} live interactive sessions share the title "${title}". Stop the right one by its notebook: stop --url` : `No live interactive session has the exact title "${title}". See: sessions`);
+    }
+    await page.getByRole('menuitem', { name: /Stop Session/i }).first().click({ timeout: 5000 });
+    // Confirm by the row's state, not by whether the row is still there: finished rows stay listed.
+    const deadline = Date.now() + 60000;
+    let stopped = false;
+    while (Date.now() < deadline && !stopped) {
+      await sleep(1000);
+      const list = await listRows(page);
+      stopped = !list.some((r) => r.title === title && /interactive/i.test(r.kind ?? '') && /^(Running|Queued|Starting)/i.test(r.state ?? ''));
+    }
+    await closeActiveEvents(page);
+    if (!stopped) throw new KaggleError(`Clicked Stop Session for "${title}", but it still shows as live after 60 s. Check with: sessions`, 124);
+    return { stopped: title };
+  } finally {
+    await page.close();
+  }
 }
 
 /** Weekly GPU/TPU hours from the official Kaggle CLI, which needs no browser. */
@@ -1105,8 +1415,10 @@ export async function selfcheck(page) {
   await check('jupyter: notebook panel + sharedModel', () => getCells(page));
   await check('jupyter: command notebook:run-cell', () => inNotebook(page, () => window.jupyterapp.commands.hasCommand('notebook:run-cell')));
   await check('jupyter: command notebook:interrupt-kernel', () => inNotebook(page, () => window.jupyterapp.commands.hasCommand('notebook:interrupt-kernel')));
+  // The Run All button changes while a cell runs, so only look for it on an idle notebook.
+  const busyNow = (await runState(page).catch(() => ({ busy: false }))).busy;
   for (const [role, name] of [
-    ['button', /^Run All$/],
+    ...(busyNow ? [] : [['button', /^Run All$/]]),
     ['button', 'Save Version'],
     ['button', 'Show Versions'],
     ['button', /Share/],
@@ -1115,6 +1427,13 @@ export async function selfcheck(page) {
     await check(`toolbar: ${name}`, () => page.getByRole(role, { name }).first().isVisible());
   }
   await check('toolbar: session pill', async () => (await sessionState(page)).state !== 'unknown');
+  await check('side navigation: Active Events', async () => (await page.locator(EVENTS_BUTTON).count()) > 0);
+  const live = (await sessionState(page)).state === 'running';
+  if (live) {
+    await check('live session: resources panel gives every value', () => resources(page, { timeoutMs: 15000 }));
+    await check('live session: Jupyter server answers', async () => (await serverKernel(page)) !== null);
+    await check('live session: sidecar kernel runs a shell command', async () => (await sh(page, 'true', { timeoutMs: 20000 })).exitCode === 0);
+  }
   const expected = {
     File: [/Rename Notebook/i, /Delete Notebook/i, /Add input/i],
     Run: [/Start session|Stop session/i, /Restart & clear cell outputs/i, /Kaggle Jupyter Server/i],
@@ -1137,5 +1456,10 @@ export async function selfcheck(page) {
       return seen;
     });
   }
-  return { ok: results.every((r) => r.ok), failed: results.filter((r) => !r.ok), checked: results.length };
+  return {
+    ok: results.every((r) => r.ok),
+    failed: results.filter((r) => !r.ok),
+    checked: results.length,
+    notChecked: [...(live ? [] : ['resources panel, Jupyter server and sidecar, which need a live session: run start first']), 'official kaggle CLI, used by quota', 'save, delete, rename and add-input, which change things'],
+  };
 }

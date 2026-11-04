@@ -1,6 +1,6 @@
 # Skills
 
-Agent skills for Claude Code and Codex. Each folder is one self-contained skill, with a `SKILL.md` that tells the agent when and how to use it.
+Agent skills for Claude Code and Codex. Each skill is one self-contained folder, with a `SKILL.md` that tells the agent when and how to use it. Test results are kept apart, in [`evaluations/`](evaluations/).
 
 | Skill | What it does | Requires |
 |---|---|---|
@@ -59,6 +59,10 @@ The first time, the agent opens a separate Chrome window on the Kaggle sign-in p
 Any program on your computer can control that window while it's open, so don't sign in to anything else there.
 
 The skill works in your real Kaggle account, including your GPU quota. It's an unofficial tool that relies on Kaggle's current web interface, so a Kaggle redesign can break it. `SKILL.md` covers how to find and fix what changed.
+
+## Evaluations
+
+[`evaluations/2026-11-accelerators/`](evaluations/2026-11-accelerators/) records how `kaggle-notebooks` was tested on accelerators and monitoring, and what it did and didn't show. Start with [`FINDINGS.md`](evaluations/2026-11-accelerators/FINDINGS.md). [`PLAN.md`](evaluations/2026-11-accelerators/PLAN.md) has the criteria, [`COLAB-COMPARISON.md`](evaluations/2026-11-accelerators/COLAB-COMPARISON.md) compares it with Colab's CLI, `raw/` holds the results, and `harness/` holds the test scripts, whose paths are specific to the machine they ran on.
 
 ## License
 
