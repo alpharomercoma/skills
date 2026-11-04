@@ -1,0 +1,7 @@
+06:55:17 0.00 T: job started {"started":true,"name":"long","pid":133,"log":"/kaggle/working/long.log"}
+06:55:17 0.00 state running|prompt=false
+07:33:19 38.04 state running|prompt=true
+07:33:24 38.13 answered with job status exit=0 "logTail": "beat 2160\nbeat 2190\nbeat 2220\nbeat 2250\nbeat 2280\n"
+07:33:24 38.13 dialogs after the command []
+07:33:39 38.38 state running|prompt=false
+07:51:28 56.19 final running answered=true

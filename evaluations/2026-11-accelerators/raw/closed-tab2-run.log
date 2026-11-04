@@ -1,0 +1,31 @@
+06:04:56 start returned; immediate sh exit=0 ready
+06:05:05 monitor start exit=0 { "started": true, "name": "kn-monitor", "pid": 178, "log": "/kaggle/working/kn-monitor.log" }
+06:05:11 monitor start again, expect exit 1 exit=1 { "error": "The monitor is already running. Read it with: monitor report. Restart it with: monitor stop, then monitor start.", "name": "kn-monitor", "exists": true, "running": true, "pid": 178, "exitCode": null, "lostWit
+06:05:17 monitor stop exit=0 { "stopped": true, "name": "kn-monitor" }
+06:05:23 job start, parent and child ignore SIGTERM exit=0 { "started": true, "name": "stubborn", "pid": 243, "log": "/kaggle/working/stubborn.log" }
+06:05:32 before stop exit=0 4
+06:05:43 job stop exit=0 { "stopped": true, "name": "stubborn" }
+06:05:48 after stop, expect 0 exit=0 0
+06:05:54 job status after stop exit=0 { "name": "stubborn", "exists": true, "running": false, "pid": 243, "exitCode": null, "lostWithoutExitCode": true, "elapsedSeconds": 31, "log": "/kaggle/working/stubborn.log", "logBytes": 0, "logTail": "" }
+06:06:01 job stop a job that does not exist, expect failure exit=0 { "stopped": false, "name": "nosuchjob", "exists": false }
+06:06:07 sh timeout path: exit code passes through exit=7 
+06:06:11 resources, one reading exit=0 { "session": "running", "capturedAt": "2026-11-04T06:06:11.869Z", "accelerator": "No Accelerator", "uptime": "1m", "sessionLimit": "12 hours", "cpuPercent": 0, "ram": { "usedMiB": 588.5, "maxMiB": 30720 }, "disk": { "use
+06:06:15  kn-eval-s4e-closed-rest-only job {"started":true,"name":"s4e","pid":396,"log":"/kaggle/working/s4e.log"}
+06:06:15 0.0 kn-eval-s4e-closed-rest-only tab closed 
+06:06:16 0.0 kn-eval-s4e-closed-rest-only status running
+06:06:16 0.0 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 0
+06:06:59  kn-eval-s4f-closed-nothing job {"started":true,"name":"s4f","pid":132,"log":"/kaggle/working/s4f.log"}
+06:06:59 0.0 kn-eval-s4f-closed-nothing tab closed 
+06:07:16 0.3 kn-eval-s4f-closed-nothing status running
+06:11:18 5.1 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 300
+06:16:20 10.1 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 600
+06:21:23 15.1 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 900
+06:26:26 20.2 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 1200
+06:31:28 25.2 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 1500
+06:36:31 30.3 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 1800
+06:41:33 35.3 kn-eval-s4e-closed-rest-only rest read 200 idle/conn0 | beat 2100
+06:46:35 40.3 kn-eval-s4e-closed-rest-only status cancelled
+06:47:35 40.6 kn-eval-s4f-closed-nothing status cancelled
+06:49:06 42.8 kn-eval-s4e-closed-rest-only final rest read error TimeoutError | error TimeoutError
+06:49:37  kn-eval-s4f-closed-nothing after restart, working dir / beat processes / log . ..  | 0 | tail: cannot open '/kaggle/working/s4f.log' for reading: No such file or directory | 
+06:49:38  all end {"e":"cancelled","f":"running"}

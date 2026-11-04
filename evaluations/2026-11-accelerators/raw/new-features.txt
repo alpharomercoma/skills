@@ -1,0 +1,53 @@
+syntax-ok
+=== cgroup facts
+32212254720
+low 0 high 0 max 807 oom 3 oom_kill 1 oom_group_kill 0 
+400000 100000
+4
+33658159104
+exit=0
+=== resources (new shape, timed)
+{
+  "session": "running",
+  "capturedAt": "2026-11-04T04:46:59.387Z",
+  "accelerator": "No Accelerator",
+  "uptime": "13m",
+  "sessionLimit": "12 hours",
+  "cpuPercent": 0,
+  "ram": {
+    "usedMiB": 495.3,
+    "maxMiB": 30720
+  },
+  "disk": {
+    "usedMiB": 2048,
+    "maxMiB": 58982.4
+  },
+  "gpus": [],
+  "unrecognised": []
+}
+took 10s
+=== sessions
+kn-u2-current                  a minute GPU T4 x2
+kn-u1-cli                      3 minutes GPU T4 x2
+kn-u1-current                  None GPU T4 x2
+kn-u1-cli                      None GPU T4 x2
+kn-eval-s4d-closed-ws          11 minutes none
+kn-eval-s4c-closed-rest        12 minutes none
+kn-eval-gpu                    None GPU T4 x2
+kn-eval-s5-foreground          14 minutes none
+=== sh
+hello
+oops
+exit=5 took 5s
+timeout exit=124
+=== job: start, status, logs, exit code
+{"started":true,"name":"demo","pid":919,"log":"/kaggle/working/demo.log"}{"error":"Jobdemoisalreadyrunning.","name":"demo","exists":true,"running":true,"pid":919,"exitCode":null,"lost
+{"name":"demo","exists":true,"running":false,"pid":919,"exitCode":4,"lostWithoutExitCode":false,"elapsedSeconds":9,"log":"/kaggle/working/demo.log","logBytes":7,"logTail":"hi\nbye\n"}{"name":"demo","exists":true,"running":false,"pid":919,"exitCode":4,"lostWithoutExitCode":false,"elapsedSeconds":24,"log":"/kaggle/working/demo.log","logBytes":7,"logTail":"hi\nbye\n"}hi
+bye
+
+[{"name":"demo","exists":true,"running":false,"pid":919,"exitCode":4,"lostWithoutExitCode":false,"elapsedSeconds":33,"log":"/kaggle/working/demo.log","logBytes":7}]=== put/get with hostile and binary files
+{"path":"/kaggle/working/deep/dir/blob.bin","bytes":6000000,"verified":true}{"path":"/tmp/kn-blob.back","bytes":6000000,"verified":true}bytes identical
+{"path":"/kaggle/working/evil.py","bytes":112,"verified":true}quotes ' " ` $(whoami) \ survive 37
+ls: cannot access 'INJECTED': No such file or directory
+ERROR: Copy failed: FileNotFoundError: [Errno 2] No such file or directory: '/nonexistent'
+missing-file exit=1

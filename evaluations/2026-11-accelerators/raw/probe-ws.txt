@@ -1,0 +1,18 @@
+drawer urls 2 path variant equals page baseUrl: true
+removing stray terminal 1 204
+terminal 200 1
+terminal, path url           no origin      {"status":404,"body":"404 page not found\n"}
+terminal, path url           origin=proxy   {"status":404,"body":"404 page not found\n"}
+terminal, path url           origin=kaggle  {"status":404,"body":"404 page not found\n"}
+terminal, path url, /api     no origin      {"status":404,"body":"not found"}
+terminal, path url, /api     origin=proxy   {"status":404,"body":"not found"}
+terminal, path url, /api     origin=kaggle  {"status":404,"body":"not found"}
+terminal, token query        no origin      {"status":404,"body":"404 page not found\n"}
+terminal, token query        origin=proxy   {"status":404,"body":"404 page not found\n"}
+terminal, token query        origin=kaggle  {"status":404,"body":"404 page not found\n"}
+kernel channels, path url    no origin      {"upgraded":101,"proto":null}
+kernel channels, path url    origin=proxy   {"upgraded":101,"proto":null}
+kernel channels, path url    origin=kaggle  {"upgraded":101,"proto":null}
+from inside the page {"result":"error"}
+kernel websocket currently used by page: { conn: 'connected', username: false, hasWsUrl: true, sameBase: true }
+delete terminal 204

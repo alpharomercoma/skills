@@ -1,0 +1,4 @@
+06:01:07 kn-eval-s5-foreground state starting|
+06:01:08 L5 poll exit=1 ERROR: No live session. Run: start 
+06:01:08 L5 ended ERROR: No live session. Run: start 
+06:39:10 kn-eval-s5-foreground state running|

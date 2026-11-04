@@ -1,0 +1,1 @@
+samples 191 gpu0 peak mem 8783.0 peak util 100.0 | gpu1 peak mem 3.0 peak util 0.0

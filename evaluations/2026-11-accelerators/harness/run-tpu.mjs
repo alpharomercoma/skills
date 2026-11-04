@@ -1,0 +1,103 @@
+// A3 / C04: a real TPU session. Boot, JAX with 8 devices, PyTorch XLA, panel contents, session limit.
+import { appendFileSync, writeFileSync } from 'node:fs';
+import * as k from '/Users/alpha/.claude/skills/kaggle-notebooks/scripts/driver.mjs';
+
+const E = new URL('..', import.meta.url).pathname;
+const SLUG = 'kn-eval-tpu';
+const { ctx } = await k.connect();
+const out = `${E}raw/tpu.txt`;
+writeFileSync(out, '');
+const log = (...a) => { const l = `${new Date().toISOString().slice(11, 19)} ${a.map((x) => (typeof x === 'string' ? x : JSON.stringify(x))).join(' ')}`; console.log(l); appendFileSync(out, l + '\n'); };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+let page = k.openEditors(ctx).find((p) => p.url().includes(`/${SLUG}/edit`));
+if (!page) page = await k.newNotebook(ctx, { title: SLUG });
+log('accel', await k.setAccelerator(page, 'tpu'));
+
+const JAX = `import time, jax, jax.numpy as jnp
+print("JAX", jax.__version__, "backend", jax.default_backend(), "local devices", jax.local_device_count())
+print([str(d) for d in jax.devices()][:8])
+x = jnp.ones((jax.local_device_count(), 512, 512), dtype=jnp.float32)
+f = jax.pmap(lambda a: a @ a)
+t0 = time.time(); y = f(x); y.block_until_ready(); t1 = time.time()
+for _ in range(10):
+    y = f(x); y.block_until_ready()
+t2 = time.time()
+print("first_ms", round((t1 - t0) * 1000), "warm10_ms", round((t2 - t1) * 1000))
+print("correct", bool(jnp.all(y == 512)), "platforms", {s.device.platform for s in y.addressable_shards}, "shards", len(y.addressable_shards))
+end = time.time() + 75
+n = 0
+while time.time() < end:
+    y = f(x); y.block_until_ready(); n += 1
+print("sustained_iters", n)`;
+await k.setCells(page, [{ cell_type: 'code', source: JAX }]);
+
+// Watch the pill closely: does it queue?
+const t0 = Date.now();
+await k.startSession(page, { timeoutMs: 1000 }).catch(() => {});
+let lastPill = '';
+for (;;) {
+  const s = await k.sessionState(page);
+  if (s.raw !== lastPill) { log('pill', `+${Math.round((Date.now() - t0) / 1000)}s`, s.raw); lastPill = s.raw; }
+  const r = await k.runState(page);
+  if (r.connected && r.kernel === 'idle') break;
+  const d = await k.visibleDialogs(page);
+  if (d.length) { log('dialog', d); break; }
+  if (Date.now() - t0 > 480000) { log('gave up after 8 min'); break; }
+  await sleep(3000);
+}
+const boot = Math.round((Date.now() - t0) / 1000);
+log('boot seconds', boot);
+appendFileSync(`${E}raw/start-times.csv`, `${new Date().toISOString()},tpu,${boot}\n`);
+
+// Raw panel text, next to what the skill reports.
+const rawPanel = async () => {
+  await page.locator('button', { hasText: 'Draft Session' }).first().click();
+  await sleep(2000);
+  const t = await page.evaluate(() => {
+    const lbl = [...document.querySelectorAll('*')].find((e) => e.children.length === 0 && e.textContent.trim() === 'Disk' && e.getBoundingClientRect().width > 0);
+    for (let c = lbl; c; c = c.parentElement) { const x = c.innerText || ''; if (/Session/.test(x) && /Max/.test(x) && !/HDD/.test(x)) return x; }
+    return null;
+  });
+  await page.evaluate(() => document.querySelectorAll('button[aria-label="Close"]').forEach((b) => b.getBoundingClientRect().width > 0 && b.click()));
+  return t;
+};
+await sleep(15000);
+log('RAW PANEL idle', await rawPanel().then((t) => (t || 'none').split('\n').filter(Boolean).join(' | ')));
+log('SKILL resources idle', await k.resources(page).catch((e) => e.message.slice(0, 160)));
+log('truth', await k.sh(page, 'nproc; free -g | sed -n 2p; df -h / /kaggle/working | tail -2; ls /dev/accel* 2>/dev/null | wc -l; env | grep -E "^(TPU_|PJRT|XRT)" | cut -c1-60').then((r) => r.stdout.replace(/\n/g, ' | ')));
+
+await k.runAll(page);
+log('JAX run started');
+await sleep(25000);
+log('RAW PANEL during compute', await rawPanel().then((t) => (t || 'none').split('\n').filter(Boolean).join(' | ')));
+log('SKILL resources during compute', await k.resources(page).catch((e) => e.message.slice(0, 160)));
+const w = await k.waitForRun(page, { timeoutMs: 240000, pollMs: 3000 });
+log('wait', { done: w.done, errored: w.errored, timedOut: !!w.timedOut });
+log('JAX OUTPUT', (await k.outputs(page)).map((c) => c.text).join('\n').slice(0, 900));
+log('quota now', k.quota().map((q) => `${q.resource} ${q.used}`));
+
+// PyTorch XLA in a fresh kernel, on the same session.
+await k.stopSession(page).catch(() => {});
+log('stopped JAX session', (await k.sessionState(page)).state);
+const XLA = `import time, torch
+print("torch", torch.__version__)
+import torch_xla, torch_xla.core.xla_model as xm, torch_xla.runtime as xr
+print("torch_xla", torch_xla.__version__)
+d = xm.xla_device()
+t0 = time.time()
+x = torch.ones((1024, 1024), device=d)
+for _ in range(10):
+    y = x @ x
+    xm.mark_step()
+print("device", d, "count", xr.global_runtime_device_count(), "ms", round((time.time() - t0) * 1000))
+print("sum_ok", float(y.sum().cpu()) == 1024**3)`;
+await k.setCells(page, [{ cell_type: 'code', source: XLA }]);
+const t1 = Date.now();
+await k.runAll(page, { startTimeoutMs: 300000 });
+const w2 = await k.waitForRun(page, { timeoutMs: 300000, pollMs: 3000 });
+log('XLA wait seconds', Math.round((Date.now() - t1) / 1000), { done: w2.done, errored: w2.errored, timedOut: !!w2.timedOut });
+log('XLA OUTPUT', (await k.outputs(page)).map((c) => c.text).join('\n').slice(0, 900));
+log('stop', await k.stopSession(page).catch((e) => e.message.slice(0, 120)));
+log('final session', (await k.sessionState(page)).state, 'quota', k.quota().map((q) => `${q.resource} ${q.used}`));
+process.exit(0);

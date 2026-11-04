@@ -1,0 +1,25 @@
+utc,slug,event,detail
+2026-11-04T05:14:57.111Z,kn-eval-l2-job-unanswered,job started,{"write":0;"pid":140}
+2026-11-04T05:14:57.121Z,kn-eval-l2-job-unanswered,state at 0.0 min,running|prompt=false
+2026-11-04T05:14:57.461Z,kn-eval-l2-job-unanswered,job progress,beat 0 elapsed_s=0 utc=1793769296
+2026-11-04T05:17:52.983Z,kn-eval-l4-prompt-cancel,idle session started,
+2026-11-04T05:17:52.996Z,kn-eval-l4-prompt-cancel,state at 0.0 min,Draft Session Running|prompt=false
+2026-11-04T05:18:23.019Z,kn-eval-l4-prompt-cancel,state at 0.5 min,running|prompt=false
+2026-11-04T05:19:23.814Z,kn-eval-s5-foreground,foreground started,
+2026-11-04T05:20:03.907Z,kn-eval-l3-job-answered,job started,{"write":0;"pid":137}
+2026-11-04T05:20:03.921Z,kn-eval-s5-foreground,state at 0.7 min,running|prompt=false
+2026-11-04T05:20:03.926Z,kn-eval-l3-job-answered,state at 0.0 min,running|prompt=false
+2026-11-04T05:20:04.295Z,kn-eval-l3-job-answered,job progress,beat 0 elapsed_s=0 utc=1793769603
+2026-11-04T05:20:29.199Z,kn-eval-l2-job-unanswered,job progress,beat 22 elapsed_s=330 utc=1793769626
+2026-11-04T05:27:57.699Z,kn-eval-l4-prompt-cancel,state at 10.1 min,|prompt=false
+2026-11-04T05:28:01.402Z,kn-eval-l2-job-unanswered,state at 13.1 min,|prompt=false
+2026-11-04T05:28:08.944Z,kn-eval-s5-foreground,state at 8.8 min,|prompt=false
+2026-11-04T05:28:08.946Z,kn-eval-l3-job-answered,state at 8.1 min,|prompt=false
+2026-11-04T05:30:01.918Z,kn-eval-l2-job-unanswered,job progress,beat 60 elapsed_s=900 utc=1793770196
+2026-11-04T05:30:09.507Z,kn-eval-l3-job-answered,job progress,beat 40 elapsed_s=600 utc=1793770203
+2026-11-04T05:40:02.318Z,kn-eval-l2-job-unanswered,job progress,beat 100 elapsed_s=1500 utc=1793770796
+2026-11-04T05:40:10.071Z,kn-eval-l3-job-answered,job progress,beat 80 elapsed_s=1200 utc=1793770803
+2026-11-04T05:50:02.797Z,kn-eval-l2-job-unanswered,job progress,beat 140 elapsed_s=2100 utc=1793771396
+2026-11-04T05:50:10.780Z,kn-eval-l3-job-answered,job progress,beat 120 elapsed_s=1800 utc=1793771403
+2026-11-04T06:00:11.391Z,kn-eval-l3-job-answered,job progress,beat 160 elapsed_s=2400 utc=1793772003
+2026-11-04T06:00:17.939Z,kn-eval-l2-job-unanswered,job progress,status undefined

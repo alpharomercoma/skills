@@ -1,0 +1,15 @@
+
+{
+  "done": true,
+  "errored": false,
+  "interrupted": false,
+  "errorCells": [],
+  "notRunCells": [],
+  "kernelRestarted": false,
+  "indeterminate": false,
+  "sessionLost": false,
+  "timedOut": false
+}
+FOREGROUND_DONE 1500
+===== cell 1  exec=2  print("SECOND_CELL_RAN", flush=True)
+SECOND_CELL_RAN

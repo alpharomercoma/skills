@@ -1,0 +1,20 @@
+utc,minutes_since_close,slug,event,detail
+2026-11-04T06:06:15.207Z,,kn-eval-s4e-closed-rest-only,job,{"started":true;"name":"s4e";"pid":396;"log":"/kaggle/working/s4e.log"}
+2026-11-04T06:06:15.313Z,0.0,kn-eval-s4e-closed-rest-only,tab closed,
+2026-11-04T06:06:16.085Z,0.0,kn-eval-s4e-closed-rest-only,status,running
+2026-11-04T06:06:16.288Z,0.0,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 0
+2026-11-04T06:06:59.279Z,,kn-eval-s4f-closed-nothing,job,{"started":true;"name":"s4f";"pid":132;"log":"/kaggle/working/s4f.log"}
+2026-11-04T06:06:59.308Z,0.0,kn-eval-s4f-closed-nothing,tab closed,
+2026-11-04T06:07:16.689Z,0.3,kn-eval-s4f-closed-nothing,status,running
+2026-11-04T06:11:18.553Z,5.1,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 300
+2026-11-04T06:16:20.942Z,10.1,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 600
+2026-11-04T06:21:23.885Z,15.1,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 900
+2026-11-04T06:26:26.141Z,20.2,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 1200
+2026-11-04T06:31:28.496Z,25.2,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 1500
+2026-11-04T06:36:31.219Z,30.3,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 1800
+2026-11-04T06:41:33.480Z,35.3,kn-eval-s4e-closed-rest-only,rest read,200 idle/conn0 | beat 2100
+2026-11-04T06:46:35.580Z,40.3,kn-eval-s4e-closed-rest-only,status,cancelled
+2026-11-04T06:47:35.992Z,40.6,kn-eval-s4f-closed-nothing,status,cancelled
+2026-11-04T06:49:06.002Z,42.8,kn-eval-s4e-closed-rest-only,final rest read,error TimeoutError | error TimeoutError
+2026-11-04T06:49:37.339Z,,kn-eval-s4f-closed-nothing,after restart, working dir / beat processes / log,. ..  | 0 | tail: cannot open '/kaggle/working/s4f.log' for reading: No such file or directory | 
+2026-11-04T06:49:38.496Z,,all,end,{"e":"cancelled";"f":"running"}

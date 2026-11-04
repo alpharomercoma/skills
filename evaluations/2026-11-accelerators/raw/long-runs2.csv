@@ -1,0 +1,4 @@
+2026-11-04T06:01:07.171Z,kn-eval-s5-foreground,state,starting|
+2026-11-04T06:01:08.975Z,L5,poll,exit=1 ERROR: No live session. Run: start 
+2026-11-04T06:01:08.976Z,L5,ended,ERROR: No live session. Run: start 
+2026-11-04T06:39:10.317Z,kn-eval-s5-foreground,state,running|

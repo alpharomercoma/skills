@@ -1,0 +1,15 @@
+MARK idle_0 1793765049.089
+MARK load_start_cuda:0 1793765079.091
+MARK load_end_cuda:0 1793765202.842
+cuda:0 steps=40588 loss=0.0000 held=1.0
+
+/tmp/ipykernel_50/82774573.py:34: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"{dev} steps={steps} loss={float(loss):.4f} held={float(hold.float().mean()):.1f}", flush=True)
+
+MARK released_cuda:0 1793765203.135
+MARK load_start_cuda:1 1793765233.136
+MARK load_end_cuda:1 1793765353.376
+cuda:1 steps=43657 loss=0.0000 held=1.0
+MARK released_cuda:1 1793765353.776
+MARK done 1793765383.777

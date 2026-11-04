@@ -1,0 +1,16 @@
+06:57:48 0.00 T: cell started 
+06:57:48 0.00 state running|prompt=false
+06:57:48 0.00 progress 
+07:02:48 5.00 progress beat 300
+07:07:48 10.01 progress beat 600
+07:12:49 15.03 progress beat 900
+07:17:51 20.05 progress beat 1200
+07:22:51 25.05 progress beat 1500
+07:27:51 30.05 progress beat 1800
+07:32:51 35.05 progress beat 2100
+07:37:51 40.06 progress beat 2400
+07:42:51 45.06 progress beat 2700
+07:47:51 50.06 progress beat 3000
+07:52:52 55.06 progress beat 3300
+07:57:52 60.06 progress beat 3600
+07:59:54 62.11 final running

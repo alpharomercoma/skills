@@ -1,0 +1,38 @@
+=== sessions, live only
+=== monitor on a known load: 60 s, 2 of 4 cores, 8 GiB RAM
+{"started":true,"name":"kn-monitor","pid":1146,"log":"/kaggle/working/kn-monitor.log"}load run exit=0
+{
+  "samples": 43,
+  "seconds": 84,
+  "lastSampleAgeSeconds": 0.9,
+  "gpus": [],
+  "cpu": {
+    "meanPercentOfAllCores": 39.4,
+    "peakPercentOfAllCores": 54.6,
+    "cores": 4
+  },
+  "ram": {
+    "peakMiB": 9496,
+    "lastMiB": 9496,
+    "totalMiB": 30720
+  },
+  "diskWorking": {
+    "lastMiB": 6,
+    "totalMiB": 19987
+  },
+  "oomKills": 1,
+  "warnings": [
+    "The memory limit has killed 1 process(es) in this session."
+  ]
+}
+{"stopped":true,"name":"kn-monitor"}=== kernel death, new code
+exit=1 after 45s
+===== cell 1  exec=·  print("AFTER_OOM_SHOULD_NOT_RUN")
+  "done": true,
+  "errored": false,
+  "kernelRestarted": true,
+  "indeterminate": false,
+The kernel died and restarted during the run, so every variable is gone, and the cell shows no error. The memory limit has killed 2 process(es) in this session, so the likely cause is running out of RAM. The limit is 30 GiB.
+=== session survives; kernel is new
+1259
+oom_kill 2

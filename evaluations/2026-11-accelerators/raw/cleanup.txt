@@ -1,0 +1,57 @@
+{ "stopped": "kn-eval-l9-foreground-untouched" } 
+{ "stopped": "kn-eval-l7-job-reopened-polled" } 
+ERROR: No live interactive session has the exact title "kn-eval-tpu". See: sessions 
+--- live after stopping
+[('kn-eval-tpu', 'queued')]
+--- deleting 44 test notebooks
+Kernel alpharomercoma/kn-u4-new deleted successfully
+Kernel alpharomercoma/kn-u4-none deleted successfully
+Kernel alpharomercoma/kn-u4-current deleted successfully
+Kernel alpharomercoma/kn-u2-none deleted successfully
+Kernel alpharomercoma/kn-u4-cli deleted successfully
+Kernel alpharomercoma/kn-u1-none deleted successfully
+Kernel alpharomercoma/kn-eval-cli-nvidiah100 deleted successfully
+Kernel alpharomercoma/kn-eval-cli-nvidial4x1 deleted successfully
+Kernel alpharomercoma/kn-eval-cli-nvidial4 deleted successfully
+Kernel alpharomercoma/kn-eval-cli-nvidiateslat4 deleted successfully
+Kernel alpharomercoma/kn-eval-l9-foreground-untouched deleted successfully
+Kernel alpharomercoma/kn-eval-l8-prompt-answered deleted successfully
+Kernel alpharomercoma/kn-u6-none deleted successfully
+Kernel alpharomercoma/kn-u6-final deleted successfully
+Kernel alpharomercoma/kn-eval-clock-g-command-at-20 deleted successfully
+Kernel alpharomercoma/kn-eval-clock-h-close-at-15 deleted successfully
+Kernel alpharomercoma/kn-eval-l7-job-reopened-polled deleted successfully
+Kernel alpharomercoma/kn-eval-l6-job-tab-open deleted successfully
+Kernel alpharomercoma/kn-eval-s4f-closed-nothing deleted successfully
+Kernel alpharomercoma/kn-eval-s4e-closed-rest-only deleted successfully
+Kernel alpharomercoma/kn-eval-a9-ui deleted successfully
+Kernel alpharomercoma/kn-eval-a9-cli deleted successfully
+Kernel alpharomercoma/kn-eval-cpu2 deleted successfully
+Kernel alpharomercoma/kn-eval-l3-job-answered deleted successfully
+Kernel alpharomercoma/kn-eval-l4-prompt-cancel deleted successfully
+Kernel alpharomercoma/kn-u2-new deleted successfully
+Kernel alpharomercoma/kn-eval-l2-job-unanswered deleted successfully
+Kernel alpharomercoma/kn-u1-new deleted successfully
+Kernel alpharomercoma/kn-u5-current deleted successfully
+Kernel alpharomercoma/kn-u2-current deleted successfully
+Kernel alpharomercoma/kn-u1-cli deleted successfully
+Kernel alpharomercoma/kn-u1-current deleted successfully
+Kernel alpharomercoma/kn-eval-s4d-closed-ws deleted successfully
+Kernel alpharomercoma/kn-eval-s4c-closed-rest deleted successfully
+Kernel alpharomercoma/kn-eval-s4b-closed deleted successfully
+Kernel alpharomercoma/kn-eval-tpu deleted successfully
+Kernel alpharomercoma/kn-eval-gpu2 deleted successfully
+Kernel alpharomercoma/kn-eval-gpu deleted successfully
+Kernel alpharomercoma/kn-eval-s5-foreground deleted successfully
+Kernel alpharomercoma/kn-eval-s4-detached-closed deleted successfully
+Kernel alpharomercoma/kn-eval-s3b-detached-poll deleted successfully
+Kernel alpharomercoma/kn-eval-s3a-detached-nopoll deleted successfully
+Kernel alpharomercoma/kn-eval-s2-idle-closed deleted successfully
+Kernel alpharomercoma/kn-eval-s1-idle-open deleted successfully
+--- what remains that matches the test pattern
+0
+--- other notebooks, untouched
+54
+      32
+Kernel alpharomercoma/kn-eval-final deleted successfully
+Kernel alpharomercoma/kn-eval-tpu-stop deleted successfully

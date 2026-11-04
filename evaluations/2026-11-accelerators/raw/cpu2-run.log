@@ -1,0 +1,21 @@
+05:49:05 start {"started":true,"seconds":21,"kernel":{"name":"Python 3","status":"idle","connected":true}}
+05:49:14 sampler {"started":true,"name":"sampler","pid":138,"log":"/kaggle/working/sampler.log"}
+05:49:46 phases started
+06:00:25 phases finished; reads 243 failed 0
+06:00:39 sampler stopped {"stopped":true,"name":"sampler"}
+06:00:40 live CPU sessions 2
+06:00:40 CPU cap retest not exercised: fewer than 5 live
+06:01:27 interrupt to idle 1.6 s {"done":true,"interrupted":true,"errored":true,"kernelRestarted":false}
+06:02:32 SIGKILL 50 killed
+06:02:43 after SIGKILL 6.0 s {"done":true,"errored":false,"kernelRestarted":false,"notRun":[0]} oom kills before 0 after 0
+06:02:43 new pid 934
+06:03:19 normal run after restart {"done":true,"errored":false,"kernelRestarted":false,"notRun":[]}
+06:03:27 C16 normal, both GPUs busy, expect none []
+06:03:34 C16 only GPU 0 used ["Only GPU 0 of 2 was used."]
+06:03:41 C16 no GPU, CPU busy ["Sampler has stopped: these numbers are old.","No GPU was used, while the CPU was busy, so the work is probably on the CPU."]
+06:03:49 C16 GPU use collapses ["Sampler has stopped: these numbers are old.","GPU use has stopped: none in the last minute, while the CPU is still busy."]
+06:03:55 C16 RAM at 95% ["Sampler has stopped: these numbers are old.","RAM reached 90% of its limit. Running out kills the kernel."]
+06:04:02 C16 working disk at 95% ["Sampler has stopped: these numbers are old.","/kaggle/working is above 90% full."]
+06:04:09 C16 GPU memory at 96% ["Sampler has stopped: these numbers are old.","GPU 0 memory reached 95% of its limit."]
+06:04:12 real ps has a token-looking value true scrubbed still holds a long value after token: false
+06:04:14 stop {"stopped":true}

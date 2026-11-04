@@ -1,0 +1,103 @@
+{
+ "slug": "kn-eval-cpu2",
+ "seconds": 90,
+ "globalsMatching": [],
+ "rows": [
+  {
+   "key": "HTTP GET kkb*.jupyter-proxy.kaggle.net/google.firestore.v1.Firestore/Listen/channel",
+   "count": 71,
+   "metricHits": 0,
+   "bytes": 2972
+  },
+  {
+   "key": "HTTP GET kkb*.jupyter-proxy.kaggle.net/k/*/*/proxy/api/sessions",
+   "count": 8,
+   "metricHits": 0,
+   "bytes": 2800
+  },
+  {
+   "key": "HTTP POST analytics.kaggle.io/record-events",
+   "count": 6,
+   "metricHits": 0,
+   "bytes": 0
+  },
+  {
+   "key": "HTTP POST www.kaggle.com/api/i/users.AccountService/GenerateAnalyticsToken",
+   "count": 6,
+   "metricHits": 0,
+   "bytes": 846
+  },
+  {
+   "key": "HTTP POST www.kaggle.com/api/i/kernels.KernelsService/GetOrCreateKernelSession",
+   "count": 3,
+   "metricHits": 0,
+   "bytes": 2742
+  },
+  {
+   "key": "HTTP POST www.kaggle.com/api/i/blobs.BlobService/StartBlobUpload",
+   "count": 3,
+   "metricHits": 0,
+   "bytes": 1398
+  },
+  {
+   "key": "HTTP PUT kkb*.jupyter-proxy.kaggle.net/upload/storage/v1/b/kaggle-kernel-blobs/o",
+   "count": 3,
+   "metricHits": 0,
+   "bytes": 3039
+  },
+  {
+   "key": "HTTP POST www.kaggle.com/api/i/kernels.KernelsService/UpdateKernelDraft",
+   "count": 3,
+   "metricHits": 0,
+   "bytes": 534
+  },
+  {
+   "key": "HTTP POST kkb*.jupyter-proxy.kaggle.net/google.firestore.v1.Firestore/Write/channel",
+   "count": 3,
+   "metricHits": 0,
+   "bytes": 33
+  },
+  {
+   "key": "WS existing socket",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 1428
+  },
+  {
+   "key": "HTTP POST www.kaggle.com/api/i/kernels.KernelsService/UpdateKernelSessionKeepalive",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 4
+  },
+  {
+   "key": "HTTP GET www.google.com/favicon.ico",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 0
+  },
+  {
+   "key": "HTTP GET www.kaggle.com/healthz/ping",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 0
+  },
+  {
+   "key": "HTTP GET kkb*.jupyter-proxy.kaggle.net/k/*/*/proxy/static/base/images/logo.png",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 0
+  },
+  {
+   "key": "HTTP GET kkb*.jupyter-proxy.kaggle.net/google.firestore.v1.Firestore/Write/channel",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 0
+  },
+  {
+   "key": "HTTP POST kkb*.jupyter-proxy.kaggle.net/google.firestore.v1.Firestore/Listen/channel",
+   "count": 2,
+   "metricHits": 0,
+   "bytes": 22
+  }
+ ]
+}

@@ -1,0 +1,206 @@
+{
+ "prompts": [
+  {
+   "id": "am1",
+   "group": "accel_monitor",
+   "text": "Open my Kaggle notebook's settings and select the two T4 GPUs.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am2",
+   "group": "accel_monitor",
+   "text": "My Kaggle session is using a GPU. Stop it and switch the notebook to TPU.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am3",
+   "group": "accel_monitor",
+   "text": "The training cell is busy in Kaggle. Check the live GPU utilization and memory without interrupting it.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am4",
+   "group": "accel_monitor",
+   "text": "I left a Kaggle notebook open overnight. Check whether its session is still running.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am5",
+   "group": "accel_monitor",
+   "text": "Check how many GPU hours I have left in my signed-in Kaggle account before I start another session.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am6",
+   "group": "accel_monitor",
+   "text": "My Kaggle training job looks stuck on CPU. Inspect the selected accelerator and live resource usage; don't edit or rerun any cells.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am7",
+   "group": "accel_monitor",
+   "text": "Stop the idle session attached to my Kaggle notebook so it stops using my GPU allowance.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "am8",
+   "group": "accel_monitor",
+   "text": "Restart my Kaggle notebook's session, then check its RAM and disk usage. Leave the cells alone.",
+   "needs": [
+    "accelerator"
+   ]
+  },
+  {
+   "id": "nb1",
+   "group": "notebook",
+   "text": "Create a Kaggle notebook called Sales Exploration and add a markdown introduction. Don't start a session yet.",
+   "needs": [
+    "notebook"
+   ]
+  },
+  {
+   "id": "nb2",
+   "group": "notebook",
+   "text": "In my Kaggle notebook, replace the second code cell with a pandas summary of missing values and run just that cell.",
+   "needs": [
+    "notebook"
+   ]
+  },
+  {
+   "id": "nb3",
+   "group": "notebook",
+   "text": "Attach the dataset at this Kaggle URL to my notebook and add a markdown cell explaining its columns.",
+   "needs": [
+    "notebook"
+   ]
+  },
+  {
+   "id": "nb4",
+   "group": "notebook",
+   "text": "Rename my open Kaggle notebook to GPU Benchmark Notes and save a version without running it.",
+   "needs": [
+    "notebook"
+   ]
+  },
+  {
+   "id": "mx1",
+   "group": "mixed",
+   "text": "Create a Kaggle notebook for this training script, select a T4 GPU, run the training cell, and report live GPU memory use while it trains.",
+   "needs": [
+    "notebook",
+    "accelerator"
+   ]
+  },
+  {
+   "id": "mx2",
+   "group": "mixed",
+   "text": "Update my Kaggle notebook with this TPU training code, switch its accelerator to TPU, start the session, and run the new cells.",
+   "needs": [
+    "notebook",
+    "accelerator"
+   ]
+  },
+  {
+   "id": "mx3",
+   "group": "mixed",
+   "text": "Check the GPU memory in my running Kaggle session, interrupt the training cell, halve its batch size in the notebook, and rerun it.",
+   "needs": [
+    "notebook",
+    "accelerator"
+   ]
+  },
+  {
+   "id": "mx4",
+   "group": "mixed",
+   "text": "In my Kaggle notebook, run the evaluation cell and save its results as a version, then stop the GPU session when everything is saved.",
+   "needs": [
+    "notebook",
+    "accelerator"
+   ]
+  },
+  {
+   "id": "el1",
+   "group": "elsewhere",
+   "text": "Give me the Kaggle CLI commands and metadata needed to push this GPU notebook as an unattended batch job from CI, without opening a browser.",
+   "needs": [
+    "kaggle-cli"
+   ]
+  },
+  {
+   "id": "el2",
+   "group": "elsewhere",
+   "text": "Use the local Kaggle CLI to download a dataset into ./data and help me fix the API-token authentication error if it fails.",
+   "needs": [
+    "kaggle-cli"
+   ]
+  },
+  {
+   "id": "el3",
+   "group": "elsewhere",
+   "text": "Use the colab CLI to create a GPU session in Google Colab and install the packages from my requirements file.",
+   "needs": [
+    "colab-operator"
+   ]
+  },
+  {
+   "id": "el4",
+   "group": "elsewhere",
+   "text": "My training data originally came from Kaggle, but the job is running in Google Colab. Use the colab CLI to check the remote GPU memory and export the session history.",
+   "needs": [
+    "colab-operator"
+   ]
+  },
+  {
+   "id": "el5",
+   "group": "elsewhere",
+   "text": "Merge these two PDFs about Kaggle GPU experiments into one PDF, with the experiment report first.",
+   "needs": [
+    "pdf"
+   ]
+  },
+  {
+   "id": "el6",
+   "group": "elsewhere",
+   "text": "Conceptually, how does a TPU differ from a GPU for neural network training? I'm not asking you to configure either.",
+   "needs": []
+  },
+  {
+   "id": "el7",
+   "group": "elsewhere",
+   "text": "PyTorch on my local Ubuntu workstation says CUDA is unavailable even though nvidia-smi sees my RTX card. Help me troubleshoot it.",
+   "needs": []
+  },
+  {
+   "id": "el8",
+   "group": "elsewhere",
+   "text": "Rewrite this sentence to sound clearer: 'We trained on a Kaggle GPU and recorded the results.'",
+   "needs": []
+  }
+ ],
+ "designs": {
+  "A": {
+   "kaggle-notebooks": "Use when an AI agent needs the Kaggle web UI or notebook editor, such as creating or editing Kaggle notebooks, pasting code into cells and running them, switching GPU or TPU accelerators, running shell commands in a live Kaggle session, checking session resources or GPU quota, attaching datasets, or training on Kaggle GPUs from a terminal."
+  },
+  "A2": {
+   "kaggle-notebooks": "Use for work in Kaggle's web notebook editor or live sessions: create or edit notebooks, attach datasets, run cells or session Python/shell commands, inspect outputs, save versions, select or switch GPU/TPU accelerators, start/stop/restart sessions, and check session status, live resources, GPU memory or remaining quota. Includes diagnosing CPU-only training in Kaggle. Use kaggle-cli for official CLI commands and unattended batch jobs; colab-operator for Google Colab."
+  },
+  "C": {
+   "kaggle-notebooks": "Use to create or edit notebooks in Kaggle's web editor, attach datasets, run or interrupt cells, inspect outputs, execute Python/shell commands in an existing session, and save versions. Pair with kaggle-accelerators when work also requires GPU/TPU selection, session lifecycle or resource/quota checks. Use kaggle-cli for official CLI commands and unattended batch jobs.",
+   "kaggle-accelerators": "Use to select or switch GPU/TPU accelerators in Kaggle's web editor; start, stop or restart live sessions; check whether sessions are running; inspect live CPU, RAM, disk, GPU utilization or GPU memory; check remaining accelerator quota; or diagnose CPU-only training in Kaggle. Pair with kaggle-notebooks for cell editing, execution or versions. Use kaggle-cli for official CLI questions, colab-operator for Colab; excludes local GPU troubleshooting and conceptual hardware questions."
+  }
+ }
+}

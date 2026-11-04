@@ -1,0 +1,9 @@
+05:14:57 kn-eval-l2-job-unanswered job started {"write":0,"pid":140}
+05:14:57 kn-eval-l2-job-unanswered state at 0.0 min running|prompt=false
+05:14:57 kn-eval-l2-job-unanswered job progress beat 0 elapsed_s=0 utc=1793769296
+05:20:29 kn-eval-l2-job-unanswered job progress beat 22 elapsed_s=330 utc=1793769626
+05:28:01 kn-eval-l2-job-unanswered state at 13.1 min |prompt=false
+05:30:01 kn-eval-l2-job-unanswered job progress beat 60 elapsed_s=900 utc=1793770196
+05:40:02 kn-eval-l2-job-unanswered job progress beat 100 elapsed_s=1500 utc=1793770796
+05:50:02 kn-eval-l2-job-unanswered job progress beat 140 elapsed_s=2100 utc=1793771396
+06:00:17 kn-eval-l2-job-unanswered job progress status undefined

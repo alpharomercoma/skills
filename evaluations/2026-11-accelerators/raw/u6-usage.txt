@@ -1,0 +1,3 @@
+final skill: 55,610 tokens, 5 tool calls, 68.6 s
+no skill: 69,998 tokens, 18 tool calls, 172.9 s
+(from the harness task notifications)

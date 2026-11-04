@@ -1,0 +1,9 @@
+MARK idle_0 1793765049.089
+MARK load_start_cuda:0 1793765079.091
+MARK load_end_cuda:0 1793765202.842
+MARK released_cuda:0 1793765203.135
+MARK load_start_cuda:1 1793765233.136
+MARK load_end_cuda:1 1793765353.376
+MARK released_cuda:1 1793765353.776
+MARK done 1793765383.777
+
