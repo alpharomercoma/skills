@@ -59,3 +59,7 @@ The first time, the agent opens a separate Chrome window on the Kaggle sign-in p
 Any program on your computer can control that window while it's open, so don't sign in to anything else there.
 
 The skill works in your real Kaggle account, including your GPU quota. It's an unofficial tool that relies on Kaggle's current web interface, so a Kaggle redesign can break it. `SKILL.md` covers how to find and fix what changed.
+
+## License
+
+[MIT](LICENSE)
